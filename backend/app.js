@@ -31,7 +31,9 @@ app.use("/uploads", express.static(path.join(__dirname1, "/uploads")))
 
 app.use("/",product);
 app.use("/", user)
+app.use("/",uploadRoutes);
 //middleware 
 app.use(errorMiddleware);
 
 module.exports = app;
+

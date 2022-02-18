@@ -6,7 +6,9 @@ import {
     CLEAR_ERROR, 
     REGISTER_USER_FAIL, 
     REGISTER_USER_REQUEST, 
-    REGISTER_USER_SUCCESS} from '../constants/userConstants';
+    REGISTER_USER_SUCCESS, 
+    LOGOUT_SUCCESS, 
+    LOGOUT_FAIL} from '../constants/userConstants';
 
 export const login = (email, password) =>  async (dispatch) => {
     try {
@@ -35,6 +37,17 @@ export const register = (name,email,password) =>  async (dispatch) => {
     catch (error){
         dispatch({type: REGISTER_USER_FAIL, payload: error.response.data.message });
     }
+}
+
+//logout 
+export const logout = () => async(dispatch) => {
+    try {
+        await axios.get('/account/logout');
+    
+        dispatch({ type: LOGOUT_SUCCESS });
+      } catch (error) {
+        dispatch({ type: LOGOUT_FAIL, payload: error.response.data.message });
+      }
 }
 
 export const clearError = ()=> async (dispatch)=> {

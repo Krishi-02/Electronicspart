@@ -34,7 +34,8 @@
   
   .header a:hover,
   .header a:active,
-  .header a.active {
+  .header a.active,
+  .log_button:hover {
     color: white;
   }
   
@@ -44,4 +45,14 @@
     border-radius: 12px;
     padding: 0 1rem;
     margin-left: 0.5rem;
+  }
+
+  .log_button{
+    background-color: #77002e;
+    color: #f8b8d2;
+    border-radius: 12px;
+    padding: 0 1rem;
+    margin-left: 0.5rem;
+    font-size: 1.5rem;
+    border: none;
   }

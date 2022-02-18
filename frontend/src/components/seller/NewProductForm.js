@@ -27,28 +27,28 @@ const NewProductForm = () => {
     const [category, setCategory] = useState("");
     const [countInStock, setcountInStock] = useState(0);
 
-    const [imageUrl, setImageUrl] = useState({data: ''});
+    const [imageUrl, setImageUrl] = useState([]);
 
 
     const handleFileChange = async (e) => {
-        let formData = new FormData()
-        formData.append('file', imageUrl.data)
-        const response = await fetch('/products/upload', {
-          method: 'POST',
-          body: formData,
-        })
-    
-        if (response){
-            console.log("Success");
-        }
+        console.log(e.target.files[0]);
+        setImageUrl(e.target.files[0]);
+        const file = e.target.files[0];
+        const data = new FormData();
+        data.append("imageUrl", file);
+
+        axios.post("http://localhost:5000/products/upload", data, { // receive two parameter endpoint url ,form data 
+      })
+      .then(res => { // then print response status
+        console.log(res.statusText)
+      })
 }
 
-    const submitHandler = (e) =>{
+    const submitHandler = async (e) =>{
         e.preventDefault();
-
         console.log(name);
-     
 
+    
         dispatch(createProduct({
             name,
             description,

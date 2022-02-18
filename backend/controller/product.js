@@ -2,11 +2,12 @@ const ApiFeatures = require('../utils/apifeatures');
 const Product = require("../models/productModel");
 const ErrorHandler = require('../utils/errorhandler');
 const catchAsyncErrors = require('../middleware/catchAsyncError');
+const cloudinary = require('cloudinary');
 
 //create product 
 exports.createProduct = async (req,res,next) =>{
 
-    req.body.user = req.user.id; 
+    // req.body.user = req.user.id; 
 
     const product = await Product.create(req.body);
 
