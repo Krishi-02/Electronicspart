@@ -1,0 +1,67 @@
+import React, { Fragment, useEffect, useState } from 'react';
+import './Register.css';
+import {Link, useHistory} from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
+import {register, clearError} from '../../actions/userAction';
+import Loader from '../../components/Loader/loader';
+
+
+
+const Register = () => {
+
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const dispatch = useDispatch();
+    let history = useHistory(); 
+
+    const {error, loading, isAuthenticated} = useSelector(state => state.userRegister); 
+
+    const submitHandler = (e) =>{
+        e.preventDefault();
+        dispatch(register(name,email,password))
+     }
+
+     useEffect(() => {
+        if(error){
+            dispatch(clearError());
+        }
+
+        if(isAuthenticated){
+            history.push("/products");
+        }
+    },[history, dispatch, history, isAuthenticated])
+
+
+  return(
+    <Fragment>
+    {loading ? (<Loader />) : (
+        <section className="main_frame">
+        <div className="card_register">
+       <form className="form" onSubmit={submitHandler}>
+            <h1>Create Account</h1>
+           <div className="control">
+               <label htmlFor="name" className="hidden">First Name: </label>
+               <input type="text" required className="name" placeholder="Name"/>
+           </div>
+           <div className="control">
+               <label htmlFor="email" className="hidden">Email: </label>
+               <input type="email" required className="email" placeholder="Email"/>
+           </div>
+           <div className="control">
+               <label htmlFor="password" className="hidden">Password: </label>
+               <input type="password" required className="password" placeholder="Password"/>
+           </div>
+           <div className="action_button">
+               <button>Sign Up</button>
+           </div>
+       </form>
+    </div>
+    </section>
+    )}
+</Fragment>
+  )
+};
+
+export default Register;
