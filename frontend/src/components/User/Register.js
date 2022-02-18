@@ -29,7 +29,7 @@ const Register = () => {
         }
 
         if(isAuthenticated){
-            history.push("/products");
+            history.push("/account/login");
         }
     },[history, dispatch, history, isAuthenticated])
 
@@ -42,16 +42,19 @@ const Register = () => {
        <form className="form" onSubmit={submitHandler}>
             <h1>Create Account</h1>
            <div className="control">
-               <label htmlFor="name" className="hidden">First Name: </label>
-               <input type="text" required className="name" placeholder="Name"/>
+               <label htmlFor="name" className="hidden">Name: </label>
+               <input type="text" required className="name" placeholder="Name" 
+               onChange={(e) => setName(e.target.value)}/>
            </div>
            <div className="control">
                <label htmlFor="email" className="hidden">Email: </label>
-               <input type="email" required className="email" placeholder="Email"/>
+               <input type="email" required className="email" placeholder="Email" 
+               onChange={(e) => setEmail(e.target.value)}/>
            </div>
            <div className="control">
                <label htmlFor="password" className="hidden">Password: </label>
-               <input type="password" required className="password" placeholder="Password"/>
+               <input type="password" required className="password" placeholder="Password"
+               onChange={(e) => setPassword(e.target.value)}/>
            </div>
            <div className="action_button">
                <button>Sign Up</button>
