@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import {StarRatings } from 'react-rating-stars-component'
+import ReactStars from 'react-rating-stars-component';
 import './Home.css';
 
 
@@ -10,9 +10,8 @@ const Product = ({ name, imageUrl, description, price, productId, ratings}) => {
         color: "rgba(20,20,20,0.1)",
         activeColor: "tomato",
         size: window.innerWidth < 600 ? 20 : 25,
-        value: 3,
+        value: 2.5,
         isHalf : true, 
-        value: ratings,
     };
     
   return (
@@ -22,7 +21,9 @@ const Product = ({ name, imageUrl, description, price, productId, ratings}) => {
       <div className="product__info">
         <p className="info__name">{name}</p>
         
-        
+        <div>
+          <ReactStars {...options}/><span>(256 Reviews)</span>
+        </div>
         <p className="info__description">{description.substring(0, 100)}...</p>
 
         <p className="info__price">₹{price}</p>
