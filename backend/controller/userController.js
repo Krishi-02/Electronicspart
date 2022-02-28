@@ -76,3 +76,40 @@ exports.logoutUser = asynchandler(async (req,res,next) => {
         message: "Logged Out"
     });
 })
+
+//get user details 
+exports.getUserDetails = asynchandler(async (req, res, next) => {
+    const user = await User.findById(req.user._id);
+  
+    res.status(200).json({
+      success: true,
+      _id : user._id,
+      name: user.name,
+      email: user.email,
+      isAdmin: user.isAdmin
+    });
+  });
+  
+  // update User password
+  exports.updatePassword = asynchandler(async (req, res, next) => {
+    const user = await User.findById(req.user.id).select("+password");
+  
+    const isPasswordMatched = await user.comparePassword(req.body.oldPassword);
+  
+    if (!isPasswordMatched) {
+      return next(new Error("Old password is incorrect"));
+    }
+  
+    if (req.body.newPassword !== req.body.confirmPassword) {
+      return next(new Error("password does not match"));
+    }
+  
+    user.password = req.body.newPassword;
+  
+    await user.save();
+    const token = user.getJWTtoken();
+    res.status(200).json({
+        user,
+        token
+    })
+  });

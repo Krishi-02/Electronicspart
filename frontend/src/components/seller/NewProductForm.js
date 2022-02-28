@@ -26,28 +26,26 @@ const NewProductForm = () => {
     const [description, setDescription] = useState("");
     const [category, setCategory] = useState("");
     const [countInStock, setcountInStock] = useState(0);
-
-    const [imageUrl, setImageUrl] = useState([]);
+    const [fileData, setfileData] = useState();
+    const [imageUrl, setImageUrl] = useState("");
 
 
     const handleFileChange = async (e) => {
         console.log(e.target.files[0]);
-        setImageUrl(e.target.files[0]);
-        const file = e.target.files[0];
-        const data = new FormData();
-        data.append("imageUrl", file);
-
-        axios.post("http://localhost:5000/products/upload", data, { // receive two parameter endpoint url ,form data 
-      })
-      .then(res => { // then print response status
-        console.log(res.statusText)
-      })
+        setfileData(e.target.files[0]);
+        setImageUrl(e.target.value);
 }
 
     const submitHandler = async (e) =>{
         e.preventDefault();
         console.log(name);
 
+        const data = new FormData();
+        data.append("file",fileData);
+
+        axios.post("http://localhost:5000/products/uploads", data)
+        .then((res) => console.log("res",res.data))
+        .catch((error) => console.error(error));
     
         dispatch(createProduct({
             name,
@@ -93,7 +91,8 @@ const NewProductForm = () => {
               </div>
               <div className="control">
                   <label htmlFor="image">Product Image file: </label>
-                  <input type="file" required name="imageUrl" className="imageUrl" accept="image/*" placeholder="Product Image" onChange={handleFileChange}/>
+                  <input type="file" required name="imageUrl" className="imageUrl" accept="image/*" 
+                  placeholder="Product Image" onChange={handleFileChange} value={imageUrl}/>
               </div>
               <div className="actions">
                   <button>Add Product</button>

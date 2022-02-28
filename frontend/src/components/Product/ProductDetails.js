@@ -1,8 +1,10 @@
+
 import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {getProductDetails} from '../../actions/productAction';
 import {addtoCart} from '../../actions/cartAction';
 import './ProductDetails.css'
+import Header from '../Header/Header';
 
 const ProductDetails = ({match, history}) => {
 
@@ -21,11 +23,14 @@ const ProductDetails = ({match, history}) => {
 
   const addToCartHandler = () => {
     dispatch(addtoCart(product._id, qty));
-    history.push('/cart');
+    console.log("Item added to cart");
+    history.push("/cart");
   };
 
   return(
-    <div className="productscreen">
+    <div>
+      <Header/>
+    <div className="productscreen"> 
     {loading ? (
       <h2>Loading...</h2>
     ) : error ? (
@@ -73,6 +78,7 @@ const ProductDetails = ({match, history}) => {
           </div>
       </>
     )}
+     </div>
      </div>
   );
 };

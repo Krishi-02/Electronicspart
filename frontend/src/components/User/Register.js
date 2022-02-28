@@ -16,7 +16,7 @@ const Register = () => {
     const dispatch = useDispatch();
     let history = useHistory(); 
 
-    const {error, loading, isAuthenticated} = useSelector(state => state.userRegister); 
+    const {error, loading, isAuthenticated} = useSelector(state => state.user); 
 
     const submitHandler = (e) =>{
         e.preventDefault();

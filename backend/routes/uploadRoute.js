@@ -2,32 +2,30 @@ const path = require('path');
 const express = require('express');
 const multer = require('multer');
 const cors = require('cors');
+const e = require('express');
 
 const router = express.Router()
 
 router.use(cors()); 
 
-var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-  cb(null, 'uploads/')
-},
-filename: function (req, file, cb) {
-  cb(null, Date.now() + '-' +file.originalname )
-}
-})
+var upload = multer({dest: "../../uploads/"})  //D:\Krisha\WebDevelopment\Electronics-part\uploads
 
-var upload = multer({ storage: storage }).single('file')
-
-router.post("/products/upload", (req, res) =>{
-  upload(req, res, function (err) {
-    if (err instanceof multer.MulterError) {
-        return res.status(500).json(err)
-    } else if (err) {
-        return res.status(500).json(err)
+router.post("/products/uploads",upload.single("file"), async(req, res) => {
+  try {
+    if(req.file){
+      res.send({
+        status: true, 
+        message: "File Uploaded"
+      });
+    } else{
+      res.status(400).send({
+        status: false,
+        data : "File not found"
+      });
     }
-    res.status(200).send(`${req.file.destination}`)
-
-})
+  } catch(e){
+    res.status(500).send(err);
+  }
 })
 
 module.exports = router;

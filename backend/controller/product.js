@@ -7,13 +7,15 @@ const cloudinary = require('cloudinary');
 //create product 
 exports.createProduct = async (req,res,next) =>{
 
-    // req.body.user = req.user.id; 
+    req.body.user = req.user.id;
+    console.log(req.body.user);
 
     const product = await Product.create(req.body);
 
     res.status(201).json({
         success:"true",
-        product
+        product,
+        user
     });
 };
 

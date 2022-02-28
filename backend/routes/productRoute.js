@@ -13,7 +13,7 @@ router.route("/products").get(getallProducts);
 
 router.route("/products/:id").get(getProductDetails);
 
-router.route("/products/new").post(createProduct);
+router.route("/products/new").post(authenticatedUser, createProduct);
 
 router.route("/products/:id").put(authenticatedUser, admin, updateProduct).delete(authenticatedUser, admin ,deleteProduct);
 

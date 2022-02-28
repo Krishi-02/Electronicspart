@@ -10,7 +10,7 @@ const Login = () => {
     const dispatch = useDispatch(); 
     let history = useHistory();
 
-    const {error, loading, isAuthenticated } = useSelector(state => state.userLogin);
+    const {error, loading, isAuthenticated } = useSelector(state => state.user);
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
