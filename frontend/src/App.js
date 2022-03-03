@@ -9,6 +9,7 @@ import ProductDetails from './components/Product/ProductDetails';
 import Register from "./components/User/Register";
 import store from './store';
 import { loadUser } from "./actions/userAction";
+import Shipping from "./components/Cart/Shipping";
 import Cart from './components/Cart/Cart';
 
 
@@ -35,6 +36,10 @@ function App() {
           <Route path="/cart" component={Cart}></Route>
           <Route path="/products/new" component={NewProduct}>
           </Route>
+    
+
+          <Route exact path="/shipping" component={Shipping} />
+          
           {/* <Route path="/products">
 
           </Route> */}

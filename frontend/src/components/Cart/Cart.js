@@ -4,6 +4,19 @@ import { useDispatch, useSelector} from 'react-redux';
 import { Link } from 'react-router-dom'
 import CartItem from './CartItem'
 import {addtoCart, removeItemsFromCart} from '../../actions/cartAction';
+import Header from "../Header/Header";
+import { useHistory } from "react-router-dom";
+import {
+  Row,
+  Col,
+  Image,
+  ListGroup,
+  Card,
+  Button,
+  ListGroupItem,
+  Form,
+} from "react-bootstrap"
+
 
 const Cart = () => {
 
@@ -28,6 +41,10 @@ const Cart = () => {
     return cartItems
       .reduce((price, item) => price + item.price * item.qty, 0)
       .toFixed(2);
+  };
+  const history = useHistory();
+  const checkoutHandler = () => {
+    history.push("/login?redirect=shipping");
   };
 
     return (
@@ -59,7 +76,9 @@ const Cart = () => {
               <p>₹{getCartSubTotal()}</p>
             </div>
             <div>
-              <button>Proceed To Checkout</button>
+            <Button onClick={checkoutHandler} >
+                Proceed To Checkout
+              </Button>
             </div>
           </div>
         </div>

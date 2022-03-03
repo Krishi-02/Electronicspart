@@ -1,5 +1,6 @@
 import "./CartItem.css";
 import { Link } from "react-router-dom";
+import {FaTrashAlt} from 'react-icons/fa';
 
 const CartItem = ({ item, qtyChangeHandler, removeHandler }) => {
   return (
@@ -26,7 +27,7 @@ const CartItem = ({ item, qtyChangeHandler, removeHandler }) => {
         className="cartItem__deleteBtn"
         onClick={() => removeHandler(item.product)}
       >
-        <i className="fas fa-trash"></i>
+        <FaTrashAlt/>
       </button>
     </div>
   );
