@@ -11,6 +11,8 @@ import store from './store';
 import { loadUser } from "./actions/userAction";
 import Shipping from "./components/Cart/Shipping";
 import Cart from './components/Cart/Cart';
+import Profile from './components/User/Profile';
+import ConfirmOrder from "./components/Cart/ConfirmOrder";
 
 
 function App() {
@@ -25,9 +27,7 @@ function App() {
     <Router>
     <main className="app">
         <Switch>
-          <Route path="/account/login">
-            <Header />
-            < Login />
+          <Route path="/account/login" component={Login}>
           </Route>
           <Route path="/account/register">
             <Header/>
@@ -36,14 +36,14 @@ function App() {
           <Route path="/cart" component={Cart}></Route>
           <Route path="/products/new" component={NewProduct}>
           </Route>
-    
-
-          <Route exact path="/shipping" component={Shipping} />
+          <Route exact path="/account" component={Profile}></Route>
+          <Route exact path="/account/shipping" component={Shipping}></Route>
+          <Route exact path="/order/confirm" component={ConfirmOrder}></Route>
           
           {/* <Route path="/products">
 
           </Route> */}
-          <Route path="/products/:id" component={Header , ProductDetails}/>
+          <Route path="/products/:id" component={ProductDetails}/>
           <Route path="/">
             <Header />
             <Home />

@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom'
 import CartItem from './CartItem'
 import {addtoCart, removeItemsFromCart} from '../../actions/cartAction';
 import Header from "../Header/Header";
-import { useHistory } from "react-router-dom";
 import {
   Row,
   Col,
@@ -18,7 +17,7 @@ import {
 } from "react-bootstrap"
 
 
-const Cart = () => {
+const Cart = ({history}) => {
 
     const dispatch = useDispatch();
     const {cartItems} = useSelector((state) => state.cart);
@@ -37,14 +36,14 @@ const Cart = () => {
     return cartItems.reduce((qty, item) => Number(item.qty) + qty, 0);
   };
 
-  const getCartSubTotal = () => {
+  const getCartSubTotal = () => { 
     return cartItems
       .reduce((price, item) => price + item.price * item.qty, 0)
       .toFixed(2);
   };
-  const history = useHistory();
+  // const history = useHistory();
   const checkoutHandler = () => {
-    history.push("/login?redirect=shipping");
+    history.push("/account/login?redirect=shipping");
   };
 
     return (

@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import './Home.css';
 import Product from './Product.js';
-import Metadata from "../metaData";
+import MetaData from "../MetaData";
 import {getProduct} from '../../actions/productAction';
 import { useDispatch, useSelector} from 'react-redux';
 
@@ -16,7 +16,7 @@ const Home = () => {
   }, [dispatch]);
   
 
-    <Metadata title="ECOMMERCE"/>
+    <MetaData title="ECOMMERCE"/>
   return <div className="home">
       <div className="banner">
           <img 

@@ -4,8 +4,9 @@ import {Link, useHistory} from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import {login, clearError} from '../../actions/userAction';
 import Loader from '../../components/Loader/loader';
+import Header from '../Header/Header';
 
-const Login = () => {
+const Login = ({location}) => {
 
     const dispatch = useDispatch(); 
     let history = useHistory();
@@ -14,7 +15,6 @@ const Login = () => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    // const redirect = location.search ? location.search.split("=")[1] : "/"
 
   
 
@@ -23,20 +23,24 @@ const Login = () => {
         dispatch(login(email,password));
     }
 
+    const redirect = location.search ? location.search.split("=")[1] : "/";
+    console.log(redirect);
     useEffect(() => {
 
         if(error){
             dispatch(clearError());
         }
         if(isAuthenticated){
-            history.push("/products");
+            history.push(redirect);
         }
-    }, [isAuthenticated, error, dispatch, history])
+    }, [isAuthenticated, error, dispatch, history, redirect])
 
 
   return(
       <Fragment>
       {loading ? (<Loader />) : (
+    <div>
+        <Header />
       <section className="main_frame">
            <div className="card_login">
           <form className="form" onSubmit={submitHandler}>
@@ -67,6 +71,7 @@ const Login = () => {
           </form>
       </div>
       </section>
+      </div>
       )}
     </Fragment>
   )

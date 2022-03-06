@@ -1,10 +1,11 @@
-
 import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {getProductDetails} from '../../actions/productAction';
 import {addtoCart} from '../../actions/cartAction';
 import './ProductDetails.css'
 import Header from '../Header/Header';
+import Product from '../Home/Product';
+import ReactStars from 'react-rating-stars-component';
 
 const ProductDetails = ({match, history}) => {
 
@@ -12,6 +13,7 @@ const ProductDetails = ({match, history}) => {
   const dispatch = useDispatch();
 
   const productDetails = useSelector((state) => state.productDetails)
+  const products = useSelector((state) => state.products)
   const { loading, error, product } = productDetails
   console.log(product);
 
@@ -79,6 +81,10 @@ const ProductDetails = ({match, history}) => {
       </>
     )}
      </div>
+     <div className='relatable_products'>
+            <h1 className='rproducts_h1'>Relatable Products</h1>
+
+          </div>
      </div>
   );
 };

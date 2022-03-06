@@ -2,7 +2,7 @@ import React, { Fragment, useState } from "react";
 import "./Shipping.css";
 import { useSelector, useDispatch } from "react-redux";
 import { saveShippingInfo } from "../../actions/cartAction";
-import metaData from "../../components/metaData";
+import MetaData from "../MetaData";
 import PinDropIcon from "@material-ui/icons/PinDrop";
 import HomeIcon from "@material-ui/icons/Home";
 import LocationCityIcon from "@material-ui/icons/LocationCity";
@@ -10,12 +10,12 @@ import PublicIcon from "@material-ui/icons/Public";
 import PhoneIcon from "@material-ui/icons/Phone";
 import TransferWithinAStationIcon from "@material-ui/icons/TransferWithinAStation";
 import { Country, State } from "country-state-city";
-import { useAlert } from "react-alert";
 import CheckoutSteps from "../Cart/CheckoutSteps";
+import Header from "../Header/Header";
 
 const Shipping = ({ history }) => {
   const dispatch = useDispatch();
-  const alert = useAlert();
+  // const alert = useAlert();
   const { shippingInfo } = useSelector((state) => state.cart);
 
   const [address, setAddress] = useState(shippingInfo.address);
@@ -29,7 +29,7 @@ const Shipping = ({ history }) => {
     e.preventDefault();
 
     if (phoneNo.length < 10 || phoneNo.length > 10) {
-      alert.error("Phone Number should be 10 digits Long");
+      console.error("Phone Number should be 10 digits Long");
       return;
     }
     dispatch(
@@ -40,7 +40,8 @@ const Shipping = ({ history }) => {
 
   return (
     <Fragment>
-      <metaData title="Shipping Details" />
+      <MetaData title="Shipping Details" />
+      {/* <Header/> */}
 
       <CheckoutSteps activeStep={0} />
 
@@ -59,6 +60,7 @@ const Shipping = ({ history }) => {
                 type="text"
                 placeholder="Address"
                 required
+                autoComplete="off"
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
               />

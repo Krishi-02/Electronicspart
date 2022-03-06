@@ -22,6 +22,7 @@ app.use(cookieParser());
 app.use(fileupload());
 const product = require('./routes/productRoute');
 const user = require('./routes/userRoute');
+const order = require('./routes/orderRoute');
 const fileUpload = require('express-fileupload');
 
 
@@ -32,6 +33,7 @@ app.use("/uploads", express.static(path.join(__dirname1, "/uploads")))
 app.use("/",product);
 app.use("/", user)
 app.use("/",uploadRoutes);
+app.use("/",order);
 //middleware 
 app.use(errorMiddleware);
 
