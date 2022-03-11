@@ -43,10 +43,10 @@ const ConfirmOrder = ({ history }) => {
         <div className="confirmshippingArea">
           <Typography>Shipping Info</Typography>
           <div className="confirmshippingAreaBox">
-            {/* <div>
+            <div>
               <p>Name:</p>
               <span>{user.name}</span>
-            </div> */}
+            </div>
             <div>
               <p>Phone:</p>
               <span>{shippingInfo.phoneNo}</span>
@@ -79,7 +79,7 @@ const ConfirmOrder = ({ history }) => {
       {/*  */}
       <div>
         <div className="orderSummary">
-          <Typography>Order Summery</Typography>
+          <Typography>Order Summary</Typography>
           <div>
             <div>
               <p>Subtotal:</p>

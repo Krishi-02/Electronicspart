@@ -6,10 +6,10 @@ import {login, clearError} from '../../actions/userAction';
 import Loader from '../../components/Loader/loader';
 import Header from '../Header/Header';
 
-const Login = ({location}) => {
+const Login = ({location, history}) => {
 
     const dispatch = useDispatch(); 
-    let history = useHistory();
+    // let history = useHistory();
 
     const {error, loading, isAuthenticated } = useSelector(state => state.user);
 
@@ -24,7 +24,6 @@ const Login = ({location}) => {
     }
 
     const redirect = location.search ? location.search.split("=")[1] : "/";
-    console.log(redirect);
     useEffect(() => {
 
         if(error){
@@ -38,7 +37,7 @@ const Login = ({location}) => {
 
   return(
       <Fragment>
-      {loading ? (<Loader />) : (
+      {loading ? (<Loader />) : (  
     <div>
         <Header />
       <section className="main_frame">
