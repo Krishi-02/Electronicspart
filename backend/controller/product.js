@@ -38,6 +38,23 @@ exports.getallProducts = async (req, res) => {
     });
 };
 
+// relatable products 
+exports.getRelatableProducts = async(req,res,next) => { 
+    const productCount = await Product.countDocuments(); 
+
+    const products = await Product.aggregate([{'$sample' : {'size' : 2}}]);
+
+    if(!products){
+        return next(new ErrorHandler("Products coming along", 400));
+    }
+
+    res.status(200).json({
+        success: true, 
+        products,
+        productCount,
+        message: "Product displayed"
+    });
+}; 
 
 //update product 
 exports.updateProduct = async (res,req,next) => {
@@ -94,3 +111,4 @@ exports.deleteProduct = async(req, res, next) => {
         message: "Product deleted"
     });
 }; 
+

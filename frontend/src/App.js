@@ -1,6 +1,7 @@
 import {BrowserRouter as Router, Route, Switch, Link} from "react-router-dom";
 import './App.css';
 import React, { useState } from "react";
+import WebFont from 'webfontloader';
 import Header from './components/Header/Header';
 import Home from './components/Home/Home';
 import NewProduct from "./components/seller/NewProduct";
@@ -13,16 +14,28 @@ import Shipping from "./components/Cart/Shipping";
 import Cart from './components/Cart/Cart';
 import Profile from './components/User/Profile';
 import ConfirmOrder from "./components/Cart/ConfirmOrder";
-import Dashboard from "./components/Admin/Dashboard.js";
+import Dashboard from "./components/Admin/Dashboard.js"
+import { useSelector } from "react-redux";
+import axios from "axios";
+import Payment from './components/Cart/Payment';
+import OrderSuccess from './components/Cart/OrderSuccess';
+import OrderList from './components/Admin/OrderList';
+import ProductList from './components/Admin/ProductList'
 
 
 function App() {
 
+  const {isAuthenticated, user} = useSelector((state) => state.user)
   const [sideToggle, setSideToggle] = useState(false);
 
-  // React.useEffect(() => {
-  //   store.dispatch(loadUser());
-  // },[])
+  React.useEffect(() => {
+    WebFont.load({
+      google: {
+        families: ["Roboto", "Droid Sans", "Chilanka"],
+      },
+    });
+    // store.dispatch(loadUser());
+  },[])
 
   return (
     <Router>
@@ -40,17 +53,24 @@ function App() {
           <Route exact path="/account" component={Profile}></Route>
           <Route exact path="/account/shipping" component={Shipping}></Route>
           <Route exact path="/order/confirm" component={ConfirmOrder}></Route>
-          
+          <Route exact path="/payment" component={Payment} />
+          <Route exact path="/success" component={OrderSuccess} />
+           
+         
           {/* <Route path="/products">
 
           </Route> */}
           <Route path="/products/:id" component={ProductDetails}/>
+          <Route path = "/products/:id/relatableProducts"/>
           <Route path="/">
 
           <Route path="/admin/dashboard"component={Dashboard}/>
             <Header />
             <Home />
           </Route>
+          <Route path="/admin/users"/>
+          <Route path="/admin/products" component={ProductList}/>
+          <Route path="/admin/orders"component={OrderList}/>
         </Switch>
     </main>
     </Router>

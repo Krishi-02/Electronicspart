@@ -1,27 +1,28 @@
 import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {getProduct, getProductDetails} from '../../actions/productAction';
+import {getProduct, getProductDetails, getRelatableProducts} from '../../actions/productAction';
 import {addtoCart} from '../../actions/cartAction';
 import './ProductDetails.css'
 import Header from '../Header/Header';
-import Product from '../Home/Product';
 import ReactStars from 'react-rating-stars-component';
+import loader from '../Loader/loader'
+import ProductCard from './ProductCard';
 
 const ProductDetails = ({match, history}) => {
 
   const [qty, setQty] = useState(1);
   const dispatch = useDispatch();
 
-  const productDetails = useSelector((state) => state.productDetails)
-  const {products, productCount} = useSelector((state) => state.products)
-  const { loading, error, product } = productDetails
+  const { loading, error, product} = useSelector((state) => state.productDetails)
+  const {products, productCount} = useSelector((state) => state.relatableProduct)
+  console.log(products);
   console.log(product);
 
   useEffect(() => {
     if(product && match.params.id !== product._id){ 
-      dispatch(getProductDetails(match.params.id));
+      dispatch(getProductDetails(match.params.id))
+      .then(() => dispatch(getRelatableProducts()));
     }
-    dispatch(getProduct());
   }, [dispatch]);
 
   const addToCartHandler = () => {
@@ -35,7 +36,7 @@ const ProductDetails = ({match, history}) => {
       <Header/>
     <div className="productscreen"> 
     {loading ? (
-      <h2>Loading...</h2>
+    <h2>Loading..</h2>
     ) : error ? (
       <h2>{error}</h2>
     ) : (
@@ -85,16 +86,15 @@ const ProductDetails = ({match, history}) => {
      <div className='relatable_products'>
             <h1 className='rproducts_h1'>Relatable Products</h1>
             <div className="rp_container">
-            {products && products.map((product) => {
-              <Product 
-              key={product._id}
-              name={product.name}
-              description={product.description}
-              price={product.price}
-              imageUrl={product.imageUrl}
-              productId={product._id}
-              />
-            })}
+            {products.map((item) => (
+              <ProductCard 
+              key={item._id}
+              name={item.name}
+              description={item.description}
+              price={item.price}
+              imageUrl={item.imageUrl}
+              productId={item._id}
+              />))}
             </div>
           </div>
      </div>

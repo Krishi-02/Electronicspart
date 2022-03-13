@@ -8,9 +8,8 @@ import { useDispatch, useSelector} from 'react-redux';
 const Home = () => {
   const dispatch = useDispatch();
   const {loading, error, products,productCount} = useSelector(
-    (state) => state.products
-    );
-
+    (state) => state.products);
+    // console.log(products);
   useEffect(() => {
     dispatch(getProduct());
   }, [dispatch]);

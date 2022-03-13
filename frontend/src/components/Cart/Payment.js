@@ -1,23 +1,24 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect, useRef } from 'react'
 import './Payment.css';
 import CheckoutSteps from './CheckoutSteps';
 import { useSelector, useDispatch} from 'react-redux';
 import MetaData from '../MetaData';
-import axios from 'axios';
 import {createOrder, clearErrors} from '../../actions/orderAction';
+import { Typography } from '@material-ui/core';
+
 
 
 const Payment = ({ history }) => {
 
     const orderInfo = JSON.parse(sessionStorage.getItem("orderInfo"));
     const dispatch = useDispatch();
-    const { shippingInfo, cartItems } = useSelector((state) => state.cart);
-    const { user } = useSelector((state) => state.user);
-    const { error } = useSelector((state) => state.newOrder);
+    const payBtn = useRef(null);
 
-    const paymentData = {
-      amount: Math.round(orderInfo.totalPrice * 100),
-    };
+
+    const { shippingInfo, cartItems } = useSelector((state) => state.cart);
+    const { error } = useSelector((state) => state.newOrder); 
+ 
+
 
     const order = {
       shippingInfo,
@@ -28,17 +29,42 @@ const Payment = ({ history }) => {
       totalPrice: orderInfo.totalPrice,
     };
 
+    
+
     const submitHandler = async(e) => {
       e.preventDefault();
+      if(!error){
+        console.log(order);
+        dispatch(createOrder(order));
+        console.log("Order created");
+        history.push("/success");
+      }
+      else{
+        console.log(error);
+      }
     }
+    useEffect(() => {
+      if (error) {
+        console.log(error);
+        dispatch(clearErrors());
+      }
+    }, [dispatch, error]);
     
   return (
     <Fragment>
       <MetaData title="Payment" />
       <CheckoutSteps activeStep={2}/>
       <div className='paymentContainer'>
-        <form>
-          <input />
+          <Typography>Payment Info</Typography>
+          <p>The payment method available as of now is <span>CASH ON DELIVERY</span> </p>
+          <p>Click ahead to continue with the order</p>
+          <form className='paymentForm' onSubmit={(e) => submitHandler(e)}>
+          <input
+          type="submit"
+          value={`Pay - ₹${orderInfo && orderInfo.totalPrice}`}
+          ref={payBtn}
+          className="paymentFormBtn"
+          />
         </form>
       </div>
     </Fragment>

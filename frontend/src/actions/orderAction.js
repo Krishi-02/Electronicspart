@@ -41,7 +41,7 @@ import {
         payload: error.response.data.message,
       });
     }
-  };
+}
   
   // My Orders
   export const myOrders = () => async (dispatch) => {

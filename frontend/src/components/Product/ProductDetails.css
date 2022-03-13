@@ -111,15 +111,14 @@
 .rproducts_h1{
   font-size: 25px;
 }
-
 .rp_container{
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
 }
 
 @media (max-width: 1232px) {
   .rp_container {
-    grid-template-columns: repeat(3, auto);
+    grid-template-columns: repeat(2, auto);
   }
 }
 
@@ -130,7 +129,8 @@
 }
 
 @media (max-width: 630px) {
-  .rp_container {
+  .container {
     grid-template-columns: 1fr;
   }
 }
+

@@ -15,6 +15,9 @@ import {
     ADMIN_PRODUCT_REQUEST,
     ADMIN_PRODUCT_SUCCESS,
     ADMIN_PRODUCT_FAIL,
+    RELATABLE_PRODUCT_FAIL,
+    RELATABLE_PRODUCT_REQUEST,
+    RELATABLE_PRODUCT_SUCCESS
 } from '../constants/productConstants';
 
 // Get All Products For Admin
@@ -56,6 +59,26 @@ export const getProduct = ()=> async (dispatch)=>{
         })
     }
 };
+
+//get relatable product
+export const getRelatableProducts = () => async (dispatch)=>{
+  try{
+    dispatch({ type: RELATABLE_PRODUCT_REQUEST });
+
+    const {data} = await axios.get("/products/:id/relatableProducts");
+    console.log(data);
+    dispatch({
+      type: RELATABLE_PRODUCT_SUCCESS, 
+      payload: data 
+    }); 
+  } 
+  catch(error){
+    dispatch({
+      type: RELATABLE_PRODUCT_FAIL,
+      payload: error.response.data.message
+    })
+  }
+}
 
 //product details
 export const getProductDetails = (id)=> async (dispatch)=>{

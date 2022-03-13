@@ -9,7 +9,10 @@ import {
     NEW_PRODUCT_SUCCESS,
     PRODUCT_DETAILS_FAIL,
     PRODUCT_DETAILS_REQUEST,
-    PRODUCT_DETAILS_SUCCESS
+    PRODUCT_DETAILS_SUCCESS,
+    RELATABLE_PRODUCT_FAIL,
+    RELATABLE_PRODUCT_REQUEST,
+    RELATABLE_PRODUCT_SUCCESS
 } from '../constants/productConstants';
 
 
@@ -40,6 +43,35 @@ export const productReducer = ((state = {products: [] }, action) => {
         default:
             return state;
     }
+});
+
+//relatable product 
+export const relatableProductReducer = ((state = {products: [] }, action) => {
+  switch(action.type){
+    case RELATABLE_PRODUCT_REQUEST:
+      return{
+        loading: true,
+        products: [],
+      };
+    case RELATABLE_PRODUCT_SUCCESS:
+      return{
+        loading: false, 
+        products: action.payload.products,
+        productCount: action.payload.productCount
+      };
+    case RELATABLE_PRODUCT_FAIL:
+      return{
+        loading: false,
+        error: action.payload
+      };
+    case CLEAR_ERROR:
+      return{
+        ...state,
+        error: null
+      };
+    default:
+      return state;
+  }
 });
 
 //add product details

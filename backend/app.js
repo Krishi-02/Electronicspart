@@ -7,6 +7,8 @@ const cloudinary = require('cloudinary');
 const uploadRoutes = require('./routes/uploadRoute');
 const path = require('path');
 const fileupload = require('express-fileupload');
+const dotenv = require('dotenv');
+dotenv.config();
 
 connectDB();
 
@@ -23,17 +25,18 @@ app.use(fileupload());
 const product = require('./routes/productRoute');
 const user = require('./routes/userRoute');
 const order = require('./routes/orderRoute');
+const payment = require('./routes/paymentRoute');
 const fileUpload = require('express-fileupload');
 
-
-
-const __dirname1 = path.resolve();
-app.use("/uploads", express.static(path.join(__dirname1, "/uploads")))
 
 app.use("/",product);
 app.use("/", user)
 app.use("/",uploadRoutes);
 app.use("/",order);
+
+app.use('/api/config/paypal', (req,res) => {
+  res.send(process.env.PAYPAL_CLIENT_ID);
+})
 //middleware 
 app.use(errorMiddleware);
 
