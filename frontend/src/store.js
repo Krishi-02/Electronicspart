@@ -3,14 +3,10 @@ import thunk from "redux-thunk";
 import {composeWithDevTools} from "redux-devtools-extension";
 import { newProductReducer, productReducer, productDetailsReducer} from "./reducers/productReducer";
 import {cartReducer} from './reducers/cartReducer';
-<<<<<<< Updated upstream
-import {userReducer} from './reducers/userReducer'
 import {newOrderReducer} from './reducers/orderReducer';
-=======
 import {userReducer,allUsersReducer} from './reducers/userReducer';
 import {allOrdersReducer, orderReducer} from './reducers/orderReducer';
 
->>>>>>> Stashed changes
 
 const reducer = combineReducers({
     products: productReducer,
@@ -18,13 +14,10 @@ const reducer = combineReducers({
     productDetails: productDetailsReducer,
     cart: cartReducer,
     user: userReducer,
-<<<<<<< Updated upstream
     newOrder: newOrderReducer,
-=======
     allOrders: allOrdersReducer,
     order: orderReducer,
     allUsers:allUsersReducer
->>>>>>> Stashed changes
 });
 
 let initialState={
