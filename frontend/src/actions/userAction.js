@@ -1,5 +1,8 @@
 import axios from "axios";
 import {
+    ALL_USERS_REQUEST,
+    ALL_USERS_SUCCESS,
+    ALL_USERS_FAIL,
     LOGIN_FAIL, 
     LOGIN_REQUEST, 
     LOGIN_SUCCESS, 
@@ -73,3 +76,15 @@ export const clearError = ()=> async (dispatch)=> {
         type: CLEAR_ERROR,
     });
 };
+
+// get All Users
+export const getAllUsers = () => async (dispatch) => {
+    try {
+      dispatch({ type: ALL_USERS_REQUEST });
+      const { data } = await axios.get(`/api/v1/admin/users`);
+  
+      dispatch({ type: ALL_USERS_SUCCESS, payload: data.users });
+    } catch (error) {
+      dispatch({ type: ALL_USERS_FAIL, payload: error.response.data.message });
+    }
+  };

@@ -13,6 +13,7 @@ import Shipping from "./components/Cart/Shipping";
 import Cart from './components/Cart/Cart';
 import Profile from './components/User/Profile';
 import ConfirmOrder from "./components/Cart/ConfirmOrder";
+import Dashboard from "./components/Admin/Dashboard.js";
 
 
 function App() {
@@ -45,6 +46,8 @@ function App() {
           </Route> */}
           <Route path="/products/:id" component={ProductDetails}/>
           <Route path="/">
+
+          <Route path="/admin/dashboard"component={Dashboard}/>
             <Header />
             <Home />
           </Route>
