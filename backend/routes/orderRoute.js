@@ -19,7 +19,7 @@ router.route("/orders/me").get(authenticatedUser, myOrders);
 
 router
   .route("/admin/orders")
-  .get(authenticatedUser,getAllOrders);
+  .get(getAllOrders);
 
 router
   .route("/admin/order/:id")

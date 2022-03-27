@@ -3,6 +3,7 @@ const Product = require("../models/productModel");
 const ErrorHandler = require('../utils/errorhandler');
 const catchAsyncErrors = require('../middleware/catchAsyncError');
 const cloudinary = require('cloudinary');
+const asynchandler = require('express-async-handler');
 
 //create product 
 exports.createProduct = async (req,res,next) =>{
@@ -112,3 +113,13 @@ exports.deleteProduct = async(req, res, next) => {
     });
 }; 
 
+
+//get all products (admin)
+exports.getAdminProducts = asynchandler(async(req,res,next) => {
+    const products = await Product.find(); 
+
+    res.status(200).json({
+        success: true, 
+        products,
+    });
+});

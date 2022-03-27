@@ -14,7 +14,11 @@ import {
     LOAD_USER_REQUEST,
     LOAD_USER_SUCCESS, 
     LOGOUT_SUCCESS, 
-    LOGOUT_FAIL} from '../constants/userConstants';
+    LOGOUT_FAIL, 
+    DELETE_USER_FAIL, 
+    DELETE_USER_REQUEST, 
+    DELETE_USER_RESET, 
+    DELETE_USER_SUCCESS} from '../constants/userConstants';
 
     //login
 export const login = (email, password) =>  async (dispatch) => {
@@ -81,10 +85,26 @@ export const clearError = ()=> async (dispatch)=> {
 export const getAllUsers = () => async (dispatch) => {
     try {
       dispatch({ type: ALL_USERS_REQUEST });
-      const { data } = await axios.get(`/api/v1/admin/users`);
+      const { data } = await axios.get(`/admin/users`);
   
       dispatch({ type: ALL_USERS_SUCCESS, payload: data.users });
     } catch (error) {
       dispatch({ type: ALL_USERS_FAIL, payload: error.response.data.message });
     }
   };
+
+// delete user 
+export const deleteUser = (id) => async(dispatch) => {
+    try{
+        dispatch({ type: DELETE_USER_REQUEST}); 
+
+        const {data} = await axios.delete(`/admin/user/${id}`);
+        dispatch({ type: DELETE_USER_SUCCESS, payload: data });
+    }
+    catch(error){
+        dispatch({
+            type: DELETE_USER_FAIL,
+            payload: error.response.data.message
+        });
+    }
+};

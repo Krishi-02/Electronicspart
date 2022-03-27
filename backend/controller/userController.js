@@ -114,3 +114,30 @@ exports.getUserDetails = asynchandler(async (req, res, next) => {
         token
     })
   });
+
+// get all users (admin)
+exports.getAllUser = asynchandler(async (req, res, next) => {
+  const users = await User.find();
+  console.log("Users");
+  res.status(200).json({
+    success: true, 
+    users,
+  });
+}); 
+
+//delete user 
+exports.deleteUser = asynchandler(async (req, res, next) => {
+  const user = await User.findById(req.params.id); 
+
+  if(!user){
+    return next(
+      new Error("User doesn't exist")
+    );
+  }
+
+  await user.remove(); 
+  res.status(200).json({
+    success: true, 
+    message: "User deleted Successfully",
+  });
+});

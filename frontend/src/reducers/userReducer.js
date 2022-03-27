@@ -13,7 +13,11 @@ import {
     ALL_USERS_SUCCESS,
     ALL_USERS_FAIL,
     LOGOUT_FAIL, 
-    LOGOUT_SUCCESS} from '../constants/userConstants';
+    LOGOUT_SUCCESS, 
+    DELETE_USER_FAIL, 
+    DELETE_USER_REQUEST, 
+    DELETE_USER_RESET, 
+    DELETE_USER_SUCCESS} from '../constants/userConstants';
 
 
 export const userReducer = (state = {user : {} }, action) => {
@@ -105,4 +109,37 @@ export const allUsersReducer = (state = { users: [] }, action) => {
     }
   };
   
-
+export const profileReducer = (state = {}, action) => {
+  switch(action.type){
+    case DELETE_USER_REQUEST:
+      return{
+        ...state, 
+        loading: true
+      };
+    case DELETE_USER_SUCCESS:
+      return{
+        ...state,
+        loading: false, 
+        isDeleted: action.payload.message, 
+        message: action.payload.message 
+      }; 
+    case DELETE_USER_FAIL:
+      return{
+        ...state, 
+        loading: false, 
+        error: action.payload
+      };
+    case DELETE_USER_RESET:
+      return {
+        ...state, 
+        isDeleted: false
+      };
+    case CLEAR_ERROR:
+      return{
+        ...state,
+        error: null
+      }; 
+    default:
+      return state;
+  }
+};

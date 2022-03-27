@@ -12,7 +12,14 @@ import {
     PRODUCT_DETAILS_SUCCESS,
     RELATABLE_PRODUCT_FAIL,
     RELATABLE_PRODUCT_REQUEST,
-    RELATABLE_PRODUCT_SUCCESS
+    RELATABLE_PRODUCT_SUCCESS,
+    ADMIN_PRODUCT_FAIL,
+    ADMIN_PRODUCT_REQUEST,
+    ADMIN_PRODUCT_SUCCESS,
+    DELETE_PRODUCT_FAIL,
+    DELETE_PRODUCT_REQUEST,
+    DELETE_PRODUCT_RESET,
+    DELETE_PRODUCT_SUCCESS
 } from '../constants/productConstants';
 
 
@@ -20,6 +27,7 @@ import {
 export const productReducer = ((state = {products: [] }, action) => {
     switch (action.type) {
         case ALL_PRODUCT_REQUEST:
+        case ADMIN_PRODUCT_REQUEST:
             return {
                 loading: true, 
                 products:[],
@@ -30,7 +38,13 @@ export const productReducer = ((state = {products: [] }, action) => {
                 products:action.payload.products,
                 productsCount:action.payload.productsCount,
             };
+        case ADMIN_PRODUCT_SUCCESS:
+          return{
+            loading: false,
+            products: action.payload,
+          };
         case ALL_PRODUCT_FAIL:
+        case ADMIN_PRODUCT_FAIL:
            return {
                loading: false,
                error:action.payload,
@@ -139,3 +153,37 @@ export const newProductReducer = (state = { product: {} }, action) => {
         return state;
     }
   };
+
+export const productsReducer = (state= {}, action) => {
+  switch(action.type){
+    case DELETE_PRODUCT_REQUEST:
+      return{
+        ...state,
+        loading: true
+      };
+    case DELETE_PRODUCT_SUCCESS:
+      return{
+        ...state,
+        loading: false, 
+        isDeleted: action.payload
+      };
+    case DELETE_PRODUCT_FAIL:
+      return{
+        ...state, 
+        loading: false, 
+        error: action.payload
+      }; 
+    case DELETE_PRODUCT_RESET:
+      return{
+        ...state, 
+        isDeleted: false 
+      };
+    case CLEAR_ERROR:
+      return{
+        ...state,
+        error: null 
+      };
+    default:
+      return state;
+  }
+};

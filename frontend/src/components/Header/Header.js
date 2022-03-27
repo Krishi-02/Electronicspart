@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link} from "react-router-dom";
 import { FaSearch} from "react-icons/fa"; 
 import {logout} from '../../actions/userAction';
 import { useDispatch, useSelector} from "react-redux";
@@ -9,7 +9,6 @@ import {FiShoppingCart} from 'react-icons/fi';
 function Header() {
 
     const dispatch = useDispatch();
-    let history = useHistory();
     const {user, isAuthenticated} = useSelector(state => state.user)
 
     const cart = useSelector((state) => state.cart);

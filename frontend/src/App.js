@@ -20,13 +20,14 @@ import axios from "axios";
 import Payment from './components/Cart/Payment';
 import OrderSuccess from './components/Cart/OrderSuccess';
 import OrderList from './components/Admin/OrderList';
-import ProductList from './components/Admin/ProductList'
+import ProductList from './components/Admin/ProductList';
+import UserList from "./components/Admin/UserList";
 
 
 function App() {
 
-  const {isAuthenticated, user} = useSelector((state) => state.user)
-  const [sideToggle, setSideToggle] = useState(false);
+  // const {isAuthenticated, user} = useSelector((state) => state.user)
+  // const [sideToggle, setSideToggle] = useState(false);
 
   React.useEffect(() => {
     WebFont.load({
@@ -55,22 +56,16 @@ function App() {
           <Route exact path="/order/confirm" component={ConfirmOrder}></Route>
           <Route exact path="/payment" component={Payment} />
           <Route exact path="/success" component={OrderSuccess} />
-           
-         
-          {/* <Route path="/products">
-
-          </Route> */}
           <Route path="/products/:id" component={ProductDetails}/>
           <Route path = "/products/:id/relatableProducts"/>
+          <Route exact path="/admin/dashboard" component={Dashboard} />
+          <Route exact path="/admin/users" component={UserList} />
+          <Route exact path="/admin/products" component={ProductList}/>
+          <Route exact path="/admin/orders"component={OrderList}/>
           <Route path="/">
-
-          <Route path="/admin/dashboard"component={Dashboard}/>
             <Header />
             <Home />
           </Route>
-          <Route path="/admin/users"/>
-          <Route path="/admin/products" component={ProductList}/>
-          <Route path="/admin/orders"component={OrderList}/>
         </Switch>
     </main>
     </Router>

@@ -6,7 +6,8 @@ const { getallProducts ,
     updateProduct, 
     getProductDetails,
     getRelatableProducts, 
-    deleteProduct} = require('../controller/product');
+    deleteProduct, 
+    getAdminProducts} = require('../controller/product');
 
 const router = express.Router(); 
 
@@ -18,7 +19,9 @@ router.route("/products/:id/relatableProducts").get(getRelatableProducts);
 
 router.route("/products/new").post(authenticatedUser, createProduct);
 
-router.route("/products/:id").put(authenticatedUser, admin, updateProduct).delete(authenticatedUser, admin ,deleteProduct);
+router.route("product/:id").put(authenticatedUser, admin, updateProduct);
 
+router.route("/admin/product/:id").delete(authenticatedUser, admin, deleteProduct);
 
+router.route("/admin/products").get(getAdminProducts);
 module.exports = router;

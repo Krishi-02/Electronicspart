@@ -7,7 +7,6 @@ import {
     CLEAR_ERROR,
     NEW_PRODUCT_FAIL,
     NEW_PRODUCT_REQUEST,
-    NEW_PRODUCT_RESET,
     NEW_PRODUCT_SUCCESS,
     PRODUCT_DETAILS_FAIL,
     PRODUCT_DETAILS_REQUEST,
@@ -17,7 +16,10 @@ import {
     ADMIN_PRODUCT_FAIL,
     RELATABLE_PRODUCT_FAIL,
     RELATABLE_PRODUCT_REQUEST,
-    RELATABLE_PRODUCT_SUCCESS
+    RELATABLE_PRODUCT_SUCCESS,
+    DELETE_PRODUCT_FAIL,
+    DELETE_PRODUCT_REQUEST,
+    DELETE_PRODUCT_SUCCESS
 } from '../constants/productConstants';
 
 // Get All Products For Admin
@@ -26,6 +28,7 @@ export const getAdminProduct = () => async (dispatch) => {
     dispatch({ type: ADMIN_PRODUCT_REQUEST });
 
     const { data } = await axios.get("/admin/products");
+    console.log(data);
 
     dispatch({
       type: ADMIN_PRODUCT_SUCCESS,
@@ -102,7 +105,7 @@ export const getProductDetails = (id)=> async (dispatch)=>{
   }
 };
 
-
+//clear errors
 export const clearError = ()=> async (dispatch)=> {
     dispatch({
         type: CLEAR_ERROR,
@@ -139,3 +142,23 @@ export const createProduct = (productData) => async (dispatch) => {
       });
     }
   };
+
+// delete products 
+export const deleteProduct = (id) => async(dispatch) => {
+  try{
+    dispatch({type: DELETE_PRODUCT_REQUEST});
+
+    const { data } = await axios.delete(`/admin/product/${id}`);
+
+    dispatch({
+      type: DELETE_PRODUCT_SUCCESS, 
+      payload: data.success 
+    });
+  }
+  catch(error){
+    dispatch({
+      type: DELETE_PRODUCT_FAIL, 
+      payload: error.response.data.message,
+    });
+  }
+};
