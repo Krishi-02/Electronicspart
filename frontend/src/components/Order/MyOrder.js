@@ -1,19 +1,16 @@
 import React, { Fragment, useEffect } from "react";
 import { DataGrid } from "@material-ui/data-grid";
-import "./MyOrders.css";
+import "./MyOrder.css";
 import { useSelector, useDispatch } from "react-redux";
 import { clearErrors, myOrders } from "../../actions/orderAction";
-import Loader from "../layout/Loader/Loader";
+import Loader from '../Loader/loader';
 import { Link } from "react-router-dom";
-import { useAlert } from "react-alert";
 import Typography from "@material-ui/core/Typography";
-import metaData from "../../components/metaData";
+import MetaData from "../MetaData";
 import LaunchIcon from "@material-ui/icons/Launch";
 
 const MyOrders = () => {
   const dispatch = useDispatch();
-
-  const alert = useAlert();
 
   const { loading, error, orders } = useSelector((state) => state.myOrders);
   const { user } = useSelector((state) => state.user);
@@ -78,16 +75,16 @@ const MyOrders = () => {
 
   useEffect(() => {
     if (error) {
-      alert.error(error);
+      console.log(error);
       dispatch(clearErrors());
     }
 
     dispatch(myOrders());
-  }, [dispatch, alert, error]);
+  }, [dispatch, error]);
 
   return (
     <Fragment>
-      <metaData title={`${user.name} - Orders`} />
+      <MetaData title={`${user.name} - Orders`} />
 
       {loading ? (
         <Loader />

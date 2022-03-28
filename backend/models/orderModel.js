@@ -39,11 +39,11 @@ const orderSchema = new mongoose.Schema({
         type: Number,
         required: true,
       },
-      quantity: {
+      qty: {
         type: Number,
         required: true,
       },
-      image: {
+      imageUrl: {
         type: String,
         required: true,
       },
@@ -54,9 +54,9 @@ const orderSchema = new mongoose.Schema({
       },
     },
   ],
-  user: {
+  user:{
     type: mongoose.Schema.ObjectId,
-    ref: "User",
+    ref: "User", 
     required: true,
   },
   paidAt: {

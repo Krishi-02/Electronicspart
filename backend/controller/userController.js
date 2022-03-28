@@ -2,6 +2,8 @@ const ApiFeatures = require('../utils/apifeatures');
 const ErrorHandler = require('../utils/errorhandler');
 const User = require('../models/userModel');
 const asynchandler = require('express-async-handler');
+const sendToken = require('../utils/jwtTokens');
+
 
 //register a user 
 exports.registerUser = async(req, res, next) => {
@@ -18,17 +20,7 @@ exports.registerUser = async(req, res, next) => {
     const user = await User.create({
         name,email,password
     });
-
-    const token = user.getJWTtoken();
-    res.status(201).json({
-        success: true,
-        _id: user._id,
-        name: user.name,
-        email: user.email,
-        isAdmin: user.isAdmin,
-        token
-    })
-
+    sendToken(user, 201, res);
 }
 
 //login user
@@ -51,16 +43,7 @@ exports.loginUser = async (req, res, next) => {
   if (!isPasswordMatched) {
     return next(new Error("Invalid email or password"));
   }
-
-    const token = user.getJWTtoken();
-    res.status(200).json({
-            success: true,
-            _id: user._id,
-            name: user.name,
-            email: user.email,
-            isAdmin: user.isAdmin,
-            token
-        });
+    sendToken(user, 200,res);
 
 }
 

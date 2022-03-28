@@ -34,9 +34,7 @@ app.use("/", user)
 app.use("/",uploadRoutes);
 app.use("/",order);
 
-app.use('/api/config/paypal', (req,res) => {
-  res.send(process.env.PAYPAL_CLIENT_ID);
-})
+
 //middleware 
 app.use(errorMiddleware);
 

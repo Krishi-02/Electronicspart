@@ -52,6 +52,7 @@ import {
     }
   };
   
+  // user order view
   export const myOrdersReducer = (state = { orders: [] }, action) => {
     switch (action.type) {
       case MY_ORDERS_REQUEST:

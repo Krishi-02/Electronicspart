@@ -7,37 +7,28 @@ exports.newOrder = asyncHandler(async (req, res, next) => {
   const {
     shippingInfo,
     orderItems,
-    paymentInfo,
     itemsPrice,
     taxPrice,
     shippingPrice,
     totalPrice
   } = req.body;
-
-  if(orderItems && orderItems.length == 0){
-    res.status(400)
-    throw new Error("No order items");
-  }
-  else{
-    const order = new Order({
+  console.log(req.body);
+    const createdOrder = await Order.create({
       shippingInfo,
       orderItems,
-      paymentInfo,
       itemsPrice,
       taxPrice,
       shippingPrice,
       totalPrice,
       paidAt: Date.now(),
-      user: req.user._id,
+      user: req.user._id
     });
-    
-    const createdOrder = await order.save();
+
     res.status(201).json({
       success: true,
-      createdOrder
+      createdOrder,
     });
-  }
-});
+  });
 
 // get Single Order
 exports.getSingleOrder = asyncHandler(async (req, res, next) => {
@@ -56,7 +47,7 @@ exports.getSingleOrder = asyncHandler(async (req, res, next) => {
   });
 });
 
-// get logged in user  Orders
+// get logged in user Orders
 exports.myOrders = asyncHandler(async (req, res, next) => {
   const orders = await Order.find({ user: req.user._id });
 
