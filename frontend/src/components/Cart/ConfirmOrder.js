@@ -63,7 +63,7 @@ const ConfirmOrder = ({ history }) => {
             {cartItems &&
               cartItems.map((item) => (
                 <div key={item.product}>
-                  <img src={item.imageUrl} alt="Product" />
+                  <img src={item.image} alt="Product" />
                   <Link to={`/product/${item.product}`}>
                     {item.name}
                   </Link>{" "}
