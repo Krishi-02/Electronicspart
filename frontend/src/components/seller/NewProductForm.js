@@ -1,62 +1,66 @@
 import React, {useEffect, useRef, useState} from 'react';
 import './NewProduct.css';
-import { createProduct } from '../../actions/productAction';
-import axios from 'axios';
+import { createProduct , clearError} from '../../actions/productAction';
 import {useDispatch, useSelector} from 'react-redux';
 import {NEW_PRODUCT_RESET} from '../../constants/productConstants'
 import { useHistory } from 'react-router-dom';
+import {useAlert} from 'react-alert';
 
 
 const NewProductForm = () => {
 
     const history = useHistory();
     const dispatch = useDispatch();
-
+    const alert = useAlert();
     const { loading, error, success } = useSelector((state) => state.newProduct);
-
-    useEffect(() => {
-        if (success) {
-            dispatch({ type: NEW_PRODUCT_RESET });
-            history.push("/products");
-          }
-        }, [dispatch, error, history, success]);
 
     const [name, setName] = useState("");
     const [price, setPrice] = useState(0);
     const [description, setDescription] = useState("");
     const [category, setCategory] = useState("");
     const [countInStock, setcountInStock] = useState(0);
-    const [fileData, setfileData] = useState();
-    const [imageUrl, setImageUrl] = useState("");
+    const [images, setImages] = useState();
+    const [imagePreview, setimagePreview] = useState();
 
+    useEffect(() => {
+        if(error){
+            alert.error(error);
+            dispatch(clearError());
+        }
+        if (success) {
+            alert.success("Product successfully created");
+            dispatch({ type: NEW_PRODUCT_RESET });
+            history.push("/products");
+          }
+        }, [dispatch, error, history, success, alert]);
 
-    const handleFileChange = async (e) => {
-        console.log(e.target.files[0]);
-        setfileData(e.target.files[0]);
-        setImageUrl(e.target.value);
-}
-
-    const submitHandler = async (e) =>{
+    const submitHandler = (e) =>{
         e.preventDefault();
         console.log(name);
 
-        const data = new FormData();
-        data.append("file",fileData);
-
-        axios.post("http://localhost:5000/products/uploads", data)
-        .then((res) => console.log("res",res.data))
-        .catch((error) => console.error(error));
-    
-        dispatch(createProduct({
-            name,
-            description,
-            price,
-            category,
-            countInStock,
-            imageUrl,
-        }));
+        const myForm = new FormData(); 
+        myForm.set("name", name);
+        myForm.set("description", description);
+        myForm.set("price", price);
+        myForm.set("category", category);
+        myForm.set("countInStock", countInStock);
+        myForm.append("images", images);
+        console.log(myForm);
+        dispatch(createProduct(myForm)); 
     }
-    
+    const createProductImage = (e) => { 
+        if(e.target.name === "images"){
+            const reader = new FileReader();
+            reader.onload = () =>{
+                if(reader.readyState === 2){
+                    setImages(reader.result);
+                }
+            };
+            console.log(reader);
+            reader.readAsDataURL(e.target.files[0]);
+            console.log(reader);
+        }
+    };
     const categories = ["IOT","Home Appliances","Books", "Furniture"];
 
   return(
@@ -91,8 +95,8 @@ const NewProductForm = () => {
               </div>
               <div className="control">
                   <label htmlFor="image">Product Image file: </label>
-                  <input type="file" required name="imageUrl" className="imageUrl" accept="image/*" 
-                  placeholder="Product Image" onChange={handleFileChange} value={imageUrl}/>
+                  <input type="file" required name="images" className="images" accept="image/*" 
+                  placeholder="Product Image" onChange={createProductImage}/>
               </div>
               <div className="actions">
                   <button>Add Product</button>

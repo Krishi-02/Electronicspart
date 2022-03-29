@@ -33,7 +33,7 @@ function App() {
   React.useEffect(() => {
     WebFont.load({
       google: {
-        families: ["Roboto", "Droid Sans", "Chilanka"],
+        families: ["Droid Sans", "Chilanka"],
       },
     });
     // store.dispatch(loadUser());
@@ -50,7 +50,7 @@ function App() {
             <Register />
           </Route>
           <Route path="/cart" component={Cart}></Route>
-          <Route path="/products/new" component={NewProduct}>
+          <Route exact path="/products/new" component={NewProduct}>
           </Route>
           <Route exact path="/account" component={Profile}></Route>
           <Route exact path="/account/shipping" component={Shipping}></Route>
@@ -58,7 +58,7 @@ function App() {
           <Route exact path="/payment" component={Payment} />
           <Route exact path="/success" component={OrderSuccess} />
           <Route exact path="/orders" component={MyOrder}/>
-          <Route path="/products/:id" component={ProductDetails}/>
+          <Route exact path="/products/:id" component={ProductDetails}/>
           <Route path = "/products/:id/relatableProducts"/>
           <Route exact path="/admin/dashboard" component={Dashboard} />
           <Route exact path="/admin/users" component={UserList} />

@@ -43,7 +43,7 @@ exports.loginUser = async (req, res, next) => {
   if (!isPasswordMatched) {
     return next(new Error("Invalid email or password"));
   }
-    sendToken(user, 200,res);
+    sendToken(user,200,res);
 
 }
 

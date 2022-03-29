@@ -3,7 +3,6 @@ import { DataGrid } from "@material-ui/data-grid";
 import "./ProductList.css";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { useAlert } from "react-alert";
 import { Button } from "@material-ui/core";
 import MetaData from "../MetaData";
 import EditIcon from "@material-ui/icons/Edit";
@@ -19,7 +18,6 @@ import { DELETE_ORDER_RESET } from "../../constants/orderConstants";
 const OrderList = ({ history }) => {
   const dispatch = useDispatch();
 
-  const alert = useAlert();
 
   const { error, orders } = useSelector((state) => state.allOrders);
 
@@ -31,23 +29,23 @@ const OrderList = ({ history }) => {
 
   useEffect(() => {
     if (error) {
-      alert.error(error);
+      console.log(error);
       dispatch(clearErrors());
     }
 
     if (deleteError) {
-      alert.error(deleteError);
+     console.log(deleteError);
       dispatch(clearErrors());
     }
 
     if (isDeleted) {
-      alert.success("Order Deleted Successfully");
+      console.log("Order Deleted Successfully");
       history.push("/admin/orders");
       dispatch({ type: DELETE_ORDER_RESET });
     }
 
     dispatch(getAllOrders());
-  }, [dispatch, alert, error, deleteError, history, isDeleted]);
+  }, [dispatch, error, deleteError, history, isDeleted]);
 
   const columns = [
     { field: "id", headerName: "Order ID", minWidth: 300, flex: 1 },

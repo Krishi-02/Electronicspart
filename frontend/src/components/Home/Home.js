@@ -7,12 +7,12 @@ import { useDispatch, useSelector} from 'react-redux';
 
 const Home = () => {
   const dispatch = useDispatch();
-  const {loading, error, products,productCount} = useSelector(
+  const {loading, error, products} = useSelector(
     (state) => state.products);
     // console.log(products);
   useEffect(() => {
     dispatch(getProduct());
-  }, [dispatch]);
+  }, [dispatch, error]);
   
 
     <MetaData title="ECOMMERCE"/>
@@ -35,11 +35,12 @@ const Home = () => {
           {products && products.map((product) => (
           <Product 
           key={product._id} 
-          name={product.name}
-          description={product.description}
-          price={product.price}
-          imageUrl={product.imageUrl}
-          productId={product._id}
+          // name={product.name}
+          // description={product.description}
+          // price={product.price}
+          // imageUrl={product.imageUrl}
+          // productId={product._id}
+          product={product}
           />))}
       </div>
 

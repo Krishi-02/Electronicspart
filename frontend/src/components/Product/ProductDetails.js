@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {getProduct, getProductDetails, getRelatableProducts} from '../../actions/productAction';
+import {getProductDetails, getRelatableProducts} from '../../actions/productAction';
 import {addtoCart} from '../../actions/cartAction';
 import './ProductDetails.css'
 import Header from '../Header/Header';
@@ -23,7 +23,7 @@ const ProductDetails = ({match, history}) => {
       dispatch(getProductDetails(match.params.id))
       .then(() => dispatch(getRelatableProducts()));
     }
-  }, [dispatch]);
+  }, [dispatch, match.params.id, ]);
 
   const addToCartHandler = () => {
     dispatch(addtoCart(product._id, qty));
@@ -43,7 +43,7 @@ const ProductDetails = ({match, history}) => {
       <>
         <div className="productscreen__left">
           <div className="left__image">
-           { product && product.imageUrl && <img src={product.imageUrl} alt={product.name} className="image"/>}
+           { product && product.images && <img src={product.images[0].url} alt={product.name} className="image"/>}
           </div>
           <div className="left__info">
             <p className="left__name">{product.name}</p>
@@ -89,12 +89,8 @@ const ProductDetails = ({match, history}) => {
             {products.map((item) => (
               <ProductCard 
               key={item._id}
-              name={item.name}
-              description={item.description}
-              price={item.price}
-              imageUrl={item.imageUrl}
-              productId={item._id}
-              />))}
+              product={item}
+              />))} 
             </div>
           </div>
      </div>
