@@ -32,13 +32,24 @@ exports.newOrder = asyncHandler(async (req, res, next) => {
 
 // get Single Order
 exports.getSingleOrder = asyncHandler(async (req, res, next) => {
-  const order = await Order.findById(req.params.id).populate(
-    "user",
-    "name email"
-  );
-
+  console.log(req.params.id);
+  const order = await Order.findOne({_id: req.params.id}).aggregate([ 
+    {"$lookup": {
+          from: "users",
+          localField: "user",
+          foreignField: req.params.id,
+          as: "userData"
+  }}]).exec((err, result) => {
+    if(err){
+      console.log(err);
+    }
+    else{
+      console.log(result);
+    }
+  })
+  console.log(order.user);
   if (!order) {
-    return next(new Error("Order not found with this Id"));
+    return next(new Error("Order not found with this Id")); 
   }
 
   res.status(200).json({

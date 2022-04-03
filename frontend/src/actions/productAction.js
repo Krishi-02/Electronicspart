@@ -19,7 +19,10 @@ import {
     RELATABLE_PRODUCT_SUCCESS,
     DELETE_PRODUCT_FAIL,
     DELETE_PRODUCT_REQUEST,
-    DELETE_PRODUCT_SUCCESS
+    DELETE_PRODUCT_SUCCESS,
+    NEW_REVIEW_FAIL,
+    NEW_REVIEW_REQUEST,
+    NEW_REVIEW_SUCCESS
 } from '../constants/productConstants';
 
 // Get All Products For Admin
@@ -160,5 +163,30 @@ export const deleteProduct = (id) => async(dispatch) => {
       type: DELETE_PRODUCT_FAIL, 
       payload: error.response.data.message,
     });
+  }
+};
+
+export const newReview = (reviewData)=> async (dispatch)=>{
+  try{
+      dispatch({
+          type:NEW_REVIEW_REQUEST
+      });
+
+      const config = {
+        headers: {"Content-Type" : "application/json"},
+      };
+      
+      const {data} = await axios.put(`/review`, reviewData, config);
+      console.log(data);
+      dispatch({
+          type:NEW_REVIEW_SUCCESS,
+          payload:data.success,
+      });
+  }
+  catch(error){
+      dispatch({
+          type: NEW_REVIEW_FAIL,
+          payload:error.response.data.message,
+      });
   }
 };

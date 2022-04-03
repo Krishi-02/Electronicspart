@@ -5,10 +5,11 @@ import { newProductReducer,
          productReducer, 
          productDetailsReducer, 
          relatableProductReducer, 
-         productsReducer} from "./reducers/productReducer";
+         productsReducer,
+         newReviewReducer} from "./reducers/productReducer";
 import {cartReducer} from './reducers/cartReducer';
 import {userReducer,allUsersReducer, profileReducer} from './reducers/userReducer';
-import {allOrdersReducer, orderReducer, newOrderReducer, myOrdersReducer} from './reducers/orderReducer';
+import {allOrdersReducer, orderReducer, newOrderReducer, myOrdersReducer, orderDetailsReducer} from './reducers/orderReducer';
 
 
 const reducer = combineReducers({
@@ -25,6 +26,8 @@ const reducer = combineReducers({
     relatableProduct: relatableProductReducer,
     profile: profileReducer,
     product: productsReducer,
+    orderDetails: orderDetailsReducer,
+    newReview: newReviewReducer
 });
 
 let initialState={

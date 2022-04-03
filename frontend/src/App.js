@@ -23,7 +23,7 @@ import MyOrder from './components/Order/MyOrder';
 import OrderList from './components/Admin/OrderList';
 import ProductList from './components/Admin/ProductList';
 import UserList from "./components/Admin/UserList";
-
+import OrderDetails from "./components/Order/OrderDetails";
 
 function App() {
 
@@ -58,6 +58,7 @@ function App() {
           <Route exact path="/payment" component={Payment} />
           <Route exact path="/success" component={OrderSuccess} />
           <Route exact path="/orders" component={MyOrder}/>
+          <Route exact path="/order/:id" component={OrderDetails}/>
           <Route exact path="/products/:id" component={ProductDetails}/>
           <Route path = "/products/:id/relatableProducts"/>
           <Route exact path="/admin/dashboard" component={Dashboard} />

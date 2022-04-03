@@ -145,15 +145,15 @@ exports.createProductReview = asynchandler(async(req,res,next) => {
         comment,
     };
 
-    const product = await Product.findById(productId);
+    const product = await Product.findById(productId); 
 
     const isReviewed = product.reviews.find(
         (rev) => rev.user.toString() === req.user._id.toString()
-        );
+        ); 
     if(isReviewed){
         product.reviews.forEach(rev => {
             if(rev.user.toString() === req.user._id.toString()){
-                (rev.rating = rating),(rev.comment = comment)
+                (rev.rating = rating),(rev.comment = comment) 
             }
         });
     }

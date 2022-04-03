@@ -1,11 +1,11 @@
 import React, { Fragment, useEffect } from "react";
-import "./orderDetails.css";
+import "./OrderDetails.css";
 import { useSelector, useDispatch } from "react-redux";
-import metaData from "../../components/metaData";
+import MetaData from "../MetaData";
 import { Link } from "react-router-dom";
 import { Typography } from "@material-ui/core";
 import { getOrderDetails, clearErrors } from "../../actions/orderAction";
-import Loader from "../layout/Loader/Loader";
+import Loader from "../Loader/loader";
 import { useAlert } from "react-alert";
 
 const OrderDetails = ({ match }) => {
@@ -28,7 +28,7 @@ const OrderDetails = ({ match }) => {
         <Loader />
       ) : (
         <Fragment>
-          <metaData title="Order Details" />
+          <MetaData title="Order Details" />
           <div className="orderDetailsPage">
             <div className="orderDetailsContainer">
               <Typography component="h1">
@@ -59,14 +59,14 @@ const OrderDetails = ({ match }) => {
                 <div>
                   <p
                     className={
-                      order.paymentInfo &&
-                      order.paymentInfo.status === "succeeded"
+                      order.orderStatus &&
+                      order.orderStatus === "Delivered"
                         ? "greenColor"
                         : "redColor"
                     }
                   >
-                    {order.paymentInfo &&
-                    order.paymentInfo.status === "succeeded"
+                    {order.orderStatus &&
+                    order.orderStatus === "Delivered"
                       ? "PAID"
                       : "NOT PAID"}
                   </p>
@@ -105,8 +105,8 @@ const OrderDetails = ({ match }) => {
                         {item.name}
                       </Link>{" "}
                       <span>
-                        {item.quantity} X ₹{item.price} ={" "}
-                        <b>₹{item.price * item.quantity}</b>
+                        {item.qty} X ₹{item.price} ={" "}
+                        <b>₹{item.price * item.qty}</b>
                       </span>
                     </div>
                   ))}
