@@ -24,6 +24,7 @@ import OrderList from './components/Admin/OrderList';
 import ProductList from './components/Admin/ProductList';
 import UserList from "./components/Admin/UserList";
 import OrderDetails from "./components/Order/OrderDetails";
+import ProductReviews from "./components/Admin/ProductReviews";
 
 function App() {
 
@@ -65,6 +66,7 @@ function App() {
           <Route exact path="/admin/users" component={UserList} />
           <Route exact path="/admin/products" component={ProductList}/>
           <Route exact path="/admin/orders"component={OrderList}/>
+          <Route exact path="/admin/reviews"component={ProductReviews} />
           <Route path="/">
             <Header />
             <Home />
