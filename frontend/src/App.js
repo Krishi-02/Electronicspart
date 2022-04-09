@@ -25,6 +25,7 @@ import ProductList from './components/Admin/ProductList';
 import UserList from "./components/Admin/UserList";
 import OrderDetails from "./components/Order/OrderDetails";
 import ProductReviews from "./components/Admin/ProductReviews";
+import Footer from './components/Footer/Footer';
 
 function App() {
 
@@ -70,6 +71,7 @@ function App() {
           <Route path="/">
             <Header />
             <Home />
+            <Footer />
           </Route>
         </Switch>
     </main>

@@ -7,17 +7,18 @@ const asynchandler = require('express-async-handler');
 
 //create product 
 exports.createProduct = async (req,res,next) =>{
-    // const mycloud = await cloudinary.v2.uploader.upload(req.body.images.path, {
-    //     folder: "products",
-    // }); 
-    // const imagesLink = []; 
-    // imagesLink.push({ 
-    //     public_id: mycloud.public_id,
-    //     url: mycloud.url
-    // });
+    const mycloud = await cloudinary.v2.uploader.upload(req.body.images, {
+        folder: "products",
+    }); 
+    const imagesLink = []; 
+    console.log(mycloud);
+    imagesLink.push({ 
+        public_id: mycloud.public_id,
+        url: mycloud.url
+    });
 
-    // req.body.images = imagesLink;
-    // console.log(imagesLink);
+    req.body.images = imagesLink;
+    console.log(imagesLink);
     req.body.user = req.user.id;
     console.log(req.user.id);
     const product = await Product.create(req.body);
@@ -144,7 +145,9 @@ exports.createProductReview = asynchandler(async(req,res,next) => {
         rating:Number(rating), 
         comment,
     };
-
+    if(productId.match(/^[0-9a-fA-F]{24}$/)){
+        console.log("valid id");
+    }
     const product = await Product.findById(productId); 
 
     const isReviewed = product.reviews.find(

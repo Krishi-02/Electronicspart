@@ -37,17 +37,15 @@ const NewProductForm = () => {
     const submitHandler = (e) =>{
         e.preventDefault();
         console.log(name);
-
-        const myForm = new FormData(); 
-        myForm.set("name", name);
-        myForm.set("description", description);
-        myForm.set("price", price);
-        myForm.set("category", category);
-        myForm.set("countInStock", countInStock);
-        myForm.append("images", images);
-        console.log(myForm);
-        dispatch(createProduct(myForm)); 
-    }
+        dispatch(createProduct({
+            name: name,
+            price: price,
+            description: description, 
+            countInStock: countInStock,
+            category: category, 
+            images: images,
+        })); 
+    } 
     const createProductImage = (e) => { 
         if(e.target.name === "images"){
             const reader = new FileReader();
@@ -57,7 +55,7 @@ const NewProductForm = () => {
                 }
             };
             console.log(reader);
-            reader.readAsDataURL(e.target.files[0]);
+            reader.readAsDataURL(e.target.files[0]);  
             console.log(reader);
         }
     };

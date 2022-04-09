@@ -30,4 +30,4 @@ router.route("/admin/products").get(getAdminProducts);
 router.route("/review").put(authenticatedUser, createProductReview);
 router.route("/reviews").get(getProductReviews).delete(authenticatedUser, deleteReview);
 
-module.exports = router;
+module.exports = router; 

@@ -20,7 +20,7 @@ const ProductDetails = ({match, history}) => {
 
   const { loading, error, product} = useSelector((state) => state.productDetails)
   const {success, error: reviewError } = useSelector((state) => state.newReview);
-  const {products, productCount} = useSelector((state) => state.relatableProduct);
+  const {products} = useSelector((state) => state.relatableProduct);
 
 
 
@@ -34,8 +34,8 @@ const ProductDetails = ({match, history}) => {
 
   const reviewSubmitHandler = () => {
     dispatch(newReview({
-      rating: rating,
-      comment: comment,
+      rating,
+      comment,
       productId: match.params.id,  
 
     }));
