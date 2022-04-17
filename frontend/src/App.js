@@ -46,7 +46,7 @@ function App() {
 
   return (
     <Router> 
-      {isAuthenticated && <UserOptions user={user}/>}
+      {isAuthenticated && <UserOptions user={user} className='toggle'/>} 
     <main className="app">
         <Switch>
           <Route path="/account/login" component={Login}>

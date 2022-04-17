@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import CartItem from './CartItem'
 import {addtoCart, removeItemsFromCart} from '../../actions/cartAction';
 import {useAlert } from 'react-alert'; 
+import UserOptions from '../Header/UserOptions';
 import {
   Row,
   Col,
@@ -21,7 +22,8 @@ const Cart = ({history}) => {
 
     const dispatch = useDispatch();
     const alert = useAlert();
-    const {cartItems} = useSelector((state) => state.cart);
+    const {cartItems} = useSelector((state) => state.cart); 
+    const {user, isAuthenticated} = useSelector((state) => state.user);
 
     useEffect(() => {}, []);
 
@@ -50,14 +52,15 @@ const Cart = ({history}) => {
   };
 
     return (
-        <>
+        <> 
+          {isAuthenticated && <UserOptions user={user}/>} 
         <div className="cartscreen">
           <div className="cartscreen__left">
             <h2>Shopping Cart</h2>
   
             {cartItems.length === 0 ? (
               <div>
-                Your Cart Is Empty <Link to="/">Go Back</Link>
+                Your Cart Is Empty <Link to="/products">Go Back</Link>
               </div>
             ) : (
               cartItems.map((item) => (

@@ -5,3 +5,13 @@
 .app {
   height: 80vh;
 }
+
+.toggle{
+  display: none;
+}
+
+@media (max-width: 690px) {
+  .toggle{
+    display: block;
+  }
+}

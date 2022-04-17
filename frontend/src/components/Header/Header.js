@@ -12,15 +12,6 @@ function Header() {
     const alert = useAlert();
     const {user, isAuthenticated} = useSelector(state => state.user) 
 
-    let ans; 
-    // if(user.user){
-    //     const values = user.user; 
-    // values.forEach(val => {
-    //     if(val && typeof val === "boolean"){
-    //         console.log(val);
-    //     }
-    // });
-    // }
 
     const cart = useSelector((state) => state.cart);
     const { cartItems } = cart;
