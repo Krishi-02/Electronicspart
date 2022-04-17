@@ -23,7 +23,7 @@ router
 
 router
   .route("/admin/order/:id")
-  .patch(authenticatedUser , updateOrder)
+  .put(authenticatedUser, updateOrder)
   .delete(authenticatedUser, deleteOrder);
 
 module.exports = router;

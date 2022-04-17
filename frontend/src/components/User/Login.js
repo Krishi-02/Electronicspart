@@ -5,12 +5,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import {login, clearError} from '../../actions/userAction';
 import Loader from '../Loader/Loader';
 import Header from '../Header/Header';
+import { useAlert } from 'react-alert';
 
 const Login = ({location, history}) => {
 
     const dispatch = useDispatch(); 
     // let history = useHistory();
-
+    const alert = useAlert(); 
     const {error, loading, isAuthenticated } = useSelector(state => state.user);
 
     const [email, setEmail] = useState("");
@@ -20,7 +21,8 @@ const Login = ({location, history}) => {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        dispatch(login(email,password));
+        dispatch(login(email,password)); 
+        alert.success("Succesfully Logged In");
     }
 
     const redirect = location.search ? location.search.split("=")[1] : "/";
@@ -28,6 +30,7 @@ const Login = ({location, history}) => {
 
         if(error){
             dispatch(clearError());
+            alert.error(error); 
         }
         if(isAuthenticated){
             history.push(redirect);

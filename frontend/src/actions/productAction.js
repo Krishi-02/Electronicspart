@@ -37,7 +37,7 @@ export const getAdminProduct = () => async (dispatch) => {
     dispatch({ type: ADMIN_PRODUCT_REQUEST });
 
     const { data } = await axios.get("/admin/products");
-    console.log(data);
+    //console.log(data);
 
     dispatch({
       type: ADMIN_PRODUCT_SUCCESS,
@@ -79,7 +79,7 @@ export const getRelatableProducts = () => async (dispatch)=>{
     dispatch({ type: RELATABLE_PRODUCT_REQUEST });
 
     const {data} = await axios.get("/product/:id/relatableProducts");
-    console.log(data);
+    //console.log(data);
     dispatch({
       type: RELATABLE_PRODUCT_SUCCESS, 
       payload: data 
@@ -101,7 +101,7 @@ export const getProductDetails = (id)=> async (dispatch)=>{
       });
 
       const {data} = await axios.get(`/product/${id}`);
-      console.log(data);
+      //console.log(data);
       dispatch({
           type:PRODUCT_DETAILS_SUCCESS,
           payload:data.product,
@@ -124,8 +124,8 @@ export const clearError = ()=> async (dispatch)=> {
 
 //new product
 export const createProduct = (productData) => async (dispatch) => {
-  console.log("Trial");
-  console.log(productData)
+  //console.log("Trial");
+  //console.log(productData)
     try {
       dispatch({ type: NEW_PRODUCT_REQUEST });
   
@@ -138,8 +138,8 @@ export const createProduct = (productData) => async (dispatch) => {
         productData,
         config
       );
-      console.log("Done");
-      console.log(data);
+      //console.log("Done");
+      //console.log(data);
 
       dispatch({
         type: NEW_PRODUCT_SUCCESS,
@@ -184,7 +184,7 @@ export const newReview = (reviewData)=> async (dispatch)=>{
       };
       
       const { data } = await axios.put(`/review`, reviewData, config);
-      console.log(data);
+      //console.log(data);
       dispatch({
           type:NEW_REVIEW_SUCCESS,
           payload:data.success,

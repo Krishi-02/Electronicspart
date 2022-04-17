@@ -75,7 +75,7 @@ exports.getAllOrders = asyncHandler(async (req, res, next) => {
 // update Order Status -- Admin
 exports.updateOrder = asyncHandler(async (req, res, next) => {
   const order = await Order.findById(req.params.id);
-
+  console.log(order);
   if (!order) {
     return next(new Error("Order not found with this Id"));
   }
@@ -91,7 +91,7 @@ exports.updateOrder = asyncHandler(async (req, res, next) => {
   }
   order.orderStatus = req.body.status;
 
-  if (req.body.status === "Delivered") {
+  if (req.body.status === "Delivered") { 
     order.deliveredAt = Date.now();
   }
 

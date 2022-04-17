@@ -4,6 +4,7 @@ import { useDispatch, useSelector} from 'react-redux';
 import { Link } from 'react-router-dom'
 import CartItem from './CartItem'
 import {addtoCart, removeItemsFromCart} from '../../actions/cartAction';
+import {useAlert } from 'react-alert'; 
 import {
   Row,
   Col,
@@ -19,16 +20,19 @@ import {
 const Cart = ({history}) => {
 
     const dispatch = useDispatch();
+    const alert = useAlert();
     const {cartItems} = useSelector((state) => state.cart);
 
     useEffect(() => {}, []);
 
     const qtyChangeHandler = (id, qty) => {
         dispatch(addtoCart(id, qty));
+        alert.success("Added to Cart")
   };
 
   const removeFromCartHandler = (id) => {
     dispatch(removeItemsFromCart(id));
+    alert.success("Removed from Cart");
   };
 
   const getCartCount = () => {

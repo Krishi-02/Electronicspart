@@ -10,9 +10,12 @@ import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import SideBar from "./Sidebar";
 import { DELETE_PRODUCT_RESET } from '../../constants/productConstants';
+import {useAlert} from 'react-alert'
+
 
 const ProductList = ({ history }) => {
 
+    const alert = useAlert();
     const dispatch = useDispatch(); 
     const {error, products } = useSelector(state => state.products);
     const {error: deleteError, isDeleted} = useSelector(state => state.product);
@@ -23,16 +26,17 @@ const ProductList = ({ history }) => {
 
     useEffect(() => {
         if(error){
-            console.log(error); 
+            alert.error(error);
             dispatch(clearError());
         }
 
         if(deleteError){
+            alert.error(error); 
             dispatch(clearError());
         }
 
         if(isDeleted){
-            console.log("Successfully deleted");
+            alert.success("Succesfully Deleted");
             history.push("/admin/dashboard");
             dispatch({ type: DELETE_PRODUCT_RESET });
         }
