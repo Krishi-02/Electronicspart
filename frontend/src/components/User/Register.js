@@ -3,7 +3,7 @@ import './Register.css';
 import {Link, useHistory} from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import {register, clearError} from '../../actions/userAction';
-import Loader from '../../components/Loader/loader';
+import Loader from '../Loader/Loader';
 
 
 

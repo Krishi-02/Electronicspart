@@ -3,9 +3,9 @@ import { DataGrid } from "@material-ui/data-grid";
 import "./ProductReviews.css";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  clearErrors,
   getAllReviews,
   deleteReviews,
+  clearError
 } from "../../actions/productAction";
 import { useAlert } from "react-alert";
 import { Button } from "@material-ui/core";
@@ -46,12 +46,12 @@ const ProductReviews = ({ history }) => {
     }
     if (error) {
       alert.error(error);
-      dispatch(clearErrors());
+      dispatch(clearError());
     }
 
     if (deleteError) {
       alert.error(deleteError);
-      dispatch(clearErrors());
+      dispatch(clearError());
     }
 
     if (isDeleted) {
@@ -62,20 +62,20 @@ const ProductReviews = ({ history }) => {
   }, [dispatch, alert, error, deleteError, history, isDeleted, productId]);
 
   const columns = [
-    { field: "id", headerName: "Review ID", minWidth: 200, flex: 0.5 },
+    { field: "id", headerName: "Review ID", minWidth: 250, width: 200},
 
     {
       field: "user",
       headerName: "User",
-      minWidth: 200,
-      flex: 0.6,
+      minWidth: 150,
+      width: 100,
     },
 
     {
       field: "comment",
       headerName: "Comment",
-      minWidth: 350,
-      flex: 1,
+      minWidth: 300,
+      width: 350
     },
 
     {

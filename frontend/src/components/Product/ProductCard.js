@@ -26,7 +26,7 @@ const ProductCard = ({ product }) => {
 
       <p className="info__price">₹{product.price}</p>
 
-      <Link to={`/products/${product._id}`} className="info__button" target="_blank">
+      <Link to={`/product/${product._id}`} className="info__button" target="_blank">
         View
       </Link>
     </div>

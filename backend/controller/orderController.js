@@ -33,23 +33,10 @@ exports.newOrder = asyncHandler(async (req, res, next) => {
 // get Single Order
 exports.getSingleOrder = asyncHandler(async (req, res, next) => {
   console.log(req.params.id);
-  const order = await Order.findOne({_id: req.params.id}).aggregate([ 
-    {"$lookup": {
-          from: "users",
-          localField: "user",
-          foreignField: req.params.id,
-          as: "userData"
-  }}]).exec((err, result) => {
-    if(err){
-      console.log(err);
-    }
-    else{
-      console.log(result);
-    }
-  })
-  console.log(order.user);
-  if (!order) {
-    return next(new Error("Order not found with this Id")); 
+  const order = await Order.findById(req.params.id);
+
+  if(!order){
+    return next(new Error("Order not found with this id"));
   }
 
   res.status(200).json({
@@ -99,7 +86,7 @@ exports.updateOrder = asyncHandler(async (req, res, next) => {
 
   if (req.body.status === "Shipped") {
     order.orderItems.forEach(async (o) => {
-      await updateStock(o.product, o.quantity);
+      await updateStock(o.product, o.qty);
     });
   }
   order.orderStatus = req.body.status;
@@ -117,7 +104,7 @@ exports.updateOrder = asyncHandler(async (req, res, next) => {
 async function updateStock(id, quantity) {
   const product = await Product.findById(id);
 
-  product.Stock -= quantity;
+  product.countInStock -= quantity;
 
   await product.save({ validateBeforeSave: false });
 }

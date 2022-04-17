@@ -50,7 +50,7 @@
     box-sizing: border-box;
     border: 1px solid rgba(0, 0, 0, 0.267);
     border-radius: 4px;
-    font: 300 0.9vmax cursive;
+    font: 300 1vmax cursive;
     outline: none;
   }
   
@@ -63,9 +63,9 @@
   
   .shippingBtn {
     border: none;
-    background-color: tomato;
+    background-color: rgb(0, 0, 0);
     color: white;
-    font: 300 1vmax "Roboto";
+    font: 400 1.2vmax "Ubuntu";
     width: 100%;
     padding: 1vmax;
     cursor: pointer;

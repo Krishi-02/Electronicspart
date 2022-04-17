@@ -4,7 +4,6 @@ import { useDispatch, useSelector} from 'react-redux';
 import { Link } from 'react-router-dom'
 import CartItem from './CartItem'
 import {addtoCart, removeItemsFromCart} from '../../actions/cartAction';
-import Header from "../Header/Header";
 import {
   Row,
   Col,
@@ -48,7 +47,6 @@ const Cart = ({history}) => {
 
     return (
         <>
-        <Header />
         <div className="cartscreen">
           <div className="cartscreen__left">
             <h2>Shopping Cart</h2>

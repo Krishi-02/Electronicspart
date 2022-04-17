@@ -102,6 +102,9 @@
     margin: 0;
   }
 }
+.cart_button{
+  margin-bottom: 20px;
+}
 .submitReview {
   border: none;
   background-color: tomato;
@@ -178,6 +181,7 @@
 /* relatable products  */
 .relatable_products{
   margin-top: 30px;
+  margin-left: 70px;
 }
 
 .rproducts_h1{
@@ -185,7 +189,7 @@
 }
 .rp_container{
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
 }
 
 @media (max-width: 1232px) {

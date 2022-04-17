@@ -67,10 +67,7 @@ exports.getUserDetails = asynchandler(async (req, res, next) => {
   
     res.status(200).json({
       success: true,
-      _id : user._id,
-      name: user.name,
-      email: user.email,
-      isAdmin: user.isAdmin
+      user 
     });
   });
   

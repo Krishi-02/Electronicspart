@@ -77,6 +77,7 @@ import {
   
   // Update Order
   export const updateOrder = (id, order) => async (dispatch) => {
+    console.log("ID: "+ id);
     try {
       dispatch({ type: UPDATE_ORDER_REQUEST });
   
@@ -85,8 +86,8 @@ import {
           "Content-Type": "application/json",
         },
       };
-      const { data } = await axios.put(
-        `admin/order/${id}`,
+      const { data } = await axios.patch(
+        `/admin/order/${id}`,
         order,
         config
       );

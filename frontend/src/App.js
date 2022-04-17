@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import WebFont from 'webfontloader';
 import Header from './components/Header/Header';
 import Home from './components/Home/Home';
+import Products from './components/Product/Products';
 import NewProduct from "./components/seller/NewProduct";
 import Login from './components/User/Login';
 import ProductDetails from './components/Product/ProductDetails';
@@ -26,11 +27,13 @@ import UserList from "./components/Admin/UserList";
 import OrderDetails from "./components/Order/OrderDetails";
 import ProductReviews from "./components/Admin/ProductReviews";
 import Footer from './components/Footer/Footer';
+import Search from "./components/Product/Search";
+import ProcessOrder from "./components/Admin/ProcessOrder";
+import UserOptions from "./components/Header/UserOptions";
 
 function App() {
 
-  // const {isAuthenticated, user} = useSelector((state) => state.user)
-  // const [sideToggle, setSideToggle] = useState(false);
+  const {isAuthenticated, user} = useSelector((state) => state.user)
 
   React.useEffect(() => {
     WebFont.load({
@@ -38,11 +41,12 @@ function App() {
         families: ["Droid Sans", "Chilanka"],
       },
     });
-    // store.dispatch(loadUser());
+    store.dispatch(loadUser());
   },[])
 
   return (
-    <Router>
+    <Router> 
+      {isAuthenticated && <UserOptions user={user}/>}
     <main className="app">
         <Switch>
           <Route path="/account/login" component={Login}>
@@ -52,8 +56,11 @@ function App() {
             <Register />
           </Route>
           <Route path="/cart" component={Cart}></Route>
-          <Route exact path="/products/new" component={NewProduct}>
-          </Route>
+          <Route exact path="/product/new" component={NewProduct} />
+          <Route exact path="/product/:id" component={ProductDetails}/>
+          <Route exact path="/products" component={Products} />
+          <Route exact path="/products/:keyword" component={Products} />
+          <Route exact path="/search" component={Search} />
           <Route exact path="/account" component={Profile}></Route>
           <Route exact path="/account/shipping" component={Shipping}></Route>
           <Route exact path="/order/confirm" component={ConfirmOrder}></Route>
@@ -61,13 +68,14 @@ function App() {
           <Route exact path="/success" component={OrderSuccess} />
           <Route exact path="/orders" component={MyOrder}/>
           <Route exact path="/order/:id" component={OrderDetails}/>
-          <Route exact path="/products/:id" component={ProductDetails}/>
+   
           <Route path = "/products/:id/relatableProducts"/>
           <Route exact path="/admin/dashboard" component={Dashboard} />
           <Route exact path="/admin/users" component={UserList} />
           <Route exact path="/admin/products" component={ProductList}/>
           <Route exact path="/admin/orders"component={OrderList}/>
           <Route exact path="/admin/reviews"component={ProductReviews} />
+          <Route exact path="/admin/order/:id" component={ProcessOrder}/>
           <Route path="/">
             <Header />
             <Home />

@@ -52,13 +52,14 @@ export const getAdminProduct = () => async (dispatch) => {
 };
 
 //get all products
-export const getProduct = ()=> async (dispatch)=>{
+export const getProduct = (keyword = "", currentPage=1, price = [0,25000])=> async (dispatch)=>{
     try{
         dispatch({
             type:ALL_PRODUCT_REQUEST
         });
+        let link = `/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}`;
 
-        const {data} = await axios.get("/products");
+        const {data} = await axios.get(link);
         dispatch({
             type:ALL_PRODUCT_SUCCESS,
             payload:data,
@@ -77,7 +78,7 @@ export const getRelatableProducts = () => async (dispatch)=>{
   try{
     dispatch({ type: RELATABLE_PRODUCT_REQUEST });
 
-    const {data} = await axios.get("/products/:id/relatableProducts");
+    const {data} = await axios.get("/product/:id/relatableProducts");
     console.log(data);
     dispatch({
       type: RELATABLE_PRODUCT_SUCCESS, 
@@ -99,7 +100,7 @@ export const getProductDetails = (id)=> async (dispatch)=>{
           type:PRODUCT_DETAILS_REQUEST
       });
 
-      const {data} = await axios.get(`/products/${id}`);
+      const {data} = await axios.get(`/product/${id}`);
       console.log(data);
       dispatch({
           type:PRODUCT_DETAILS_SUCCESS,
@@ -133,7 +134,7 @@ export const createProduct = (productData) => async (dispatch) => {
       };
   
       const { data } = await axios.post(
-        `/products/new`,
+        `/product/new`,
         productData,
         config
       );
@@ -201,7 +202,7 @@ export const getAllReviews = (id) => async (dispatch) => {
   try {
     dispatch({ type: ALL_REVIEW_REQUEST });
 
-    const { data } = await axios.get(`/reviews?id=${id}`);
+    const { data } = await axios.get(`/admin/reviews?id=${id}`);
 
     dispatch({
       type: ALL_REVIEW_SUCCESS,
@@ -221,7 +222,7 @@ export const deleteReviews = (reviewId, productId) => async (dispatch) => {
     dispatch({ type: DELETE_REVIEW_REQUEST });
 
     const { data } = await axios.delete(
-      `/reviews?id=${reviewId}&productId=${productId}`
+      `/admin/reviews?id=${reviewId}&productId=${productId}`
     );
 
     dispatch({
@@ -235,7 +236,4 @@ export const deleteReviews = (reviewId, productId) => async (dispatch) => {
     });
   }
 };
-// Clearing Errors
-export const clearErrors = () => async (dispatch) => {
-  dispatch({ type: CLEAR_ERROR });
-};
+

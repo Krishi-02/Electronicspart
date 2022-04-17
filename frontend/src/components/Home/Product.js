@@ -28,7 +28,7 @@ const Product = ({ product }) => {
 
         <p className="info__price">{`₹${product.price}`}</p>
 
-        <Link to={`/products/${product._id}`} className="info__button"> 
+        <Link to={`/product/${product._id}`} className="info__button"> 
           View
         </Link>
       </div>

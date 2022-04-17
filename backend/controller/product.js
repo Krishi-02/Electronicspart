@@ -31,29 +31,33 @@ exports.createProduct = async (req,res,next) =>{
 
 //show all products
 exports.getallProducts = async (req, res) => {
-    const resultperpage = 8;
+    const resultPerPage = 8;
     const productCount = await Product.countDocuments();
 
     const apiFeature = new ApiFeatures(Product.find(), req.query)
         .search()
         .filter()
-        .pagination(resultperpage);
 
-        
-    const products = await apiFeature.query;
+    let products = await apiFeature.query; 
+    let filteredProductsCount = products.length; 
+    apiFeature.pagination(resultPerPage); 
+    products = await apiFeature.query; 
+
     
     res.status(201).json({
         success:"true",
         products,
         productCount,
+        filteredProductsCount, 
+        resultPerPage
     });
-};
+}
 
 // relatable products 
 exports.getRelatableProducts = async(req,res,next) => { 
     const productCount = await Product.countDocuments(); 
 
-    const products = await Product.aggregate([{'$sample' : {'size' : 2}}]);
+    const products = await Product.aggregate([{'$sample' : {'size' : 3}}]);
 
     if(!products){
         return next(new ErrorHandler("Products coming along", 400));

@@ -3,7 +3,7 @@ import { DataGrid } from "@material-ui/data-grid";
 import "./MyOrder.css";
 import { useSelector, useDispatch } from "react-redux";
 import { clearErrors, myOrders } from "../../actions/orderAction";
-import Loader from '../Loader/loader';
+import Loader from '../Loader/Loader';
 import { Link } from "react-router-dom";
 import Typography from "@material-ui/core/Typography";
 import MetaData from "../MetaData";

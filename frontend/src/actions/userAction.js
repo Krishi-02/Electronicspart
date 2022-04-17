@@ -17,8 +17,10 @@ import {
     LOGOUT_FAIL, 
     DELETE_USER_FAIL, 
     DELETE_USER_REQUEST, 
-    DELETE_USER_RESET, 
-    DELETE_USER_SUCCESS} from '../constants/userConstants';
+    DELETE_USER_SUCCESS, 
+    USER_DETAILS_FAIL, 
+    USER_DETAILS_REQUEST, 
+    USER_DETAILS_SUCCESS} from '../constants/userConstants';
 
     //login
 export const login = (email, password) =>  async (dispatch) => {
@@ -28,7 +30,7 @@ export const login = (email, password) =>  async (dispatch) => {
 
         const {data} = await axios.post('/account/login', {email, password}, config);
         console.log(data.user);
-        dispatch({type: LOGIN_SUCCESS, payload: data});
+        dispatch({type: LOGIN_SUCCESS, payload: data.user});
     }
     catch (error){
         dispatch({type: LOGIN_FAIL, payload: error.response.data.message }); 
@@ -55,7 +57,7 @@ export const loadUser = () =>  async (dispatch) => {
     try {
         dispatch({type: LOAD_USER_REQUEST });
 
-        const {data} = await axios.get('/account');
+        const {data} = await axios.get('/account/me');
 
         dispatch({type: LOAD_USER_SUCCESS, payload: data.user});
     }
@@ -108,3 +110,14 @@ export const deleteUser = (id) => async(dispatch) => {
         });
     }
 };
+
+export const getUserDetails = (id) => async (dispatch) => {
+    try {
+      dispatch({ type: USER_DETAILS_REQUEST });
+      const { data } = await axios.get(`/api/v1/admin/user/${id}`);
+  
+      dispatch({ type: USER_DETAILS_SUCCESS, payload: data.user });
+    } catch (error) {
+      dispatch({ type: USER_DETAILS_FAIL, payload: error.response.data.message });
+    }
+  };

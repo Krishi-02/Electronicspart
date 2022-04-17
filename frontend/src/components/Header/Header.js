@@ -1,15 +1,26 @@
 import React from "react";
 import { Link} from "react-router-dom";
-import { FaSearch} from "react-icons/fa"; 
 import {logout} from '../../actions/userAction';
 import { useDispatch, useSelector} from "react-redux";
 import "./Header.css";
-import {FiShoppingCart} from 'react-icons/fi';
+import { useAlert } from "react-alert";
+
 
 function Header() {
 
     const dispatch = useDispatch();
-    const {user, isAuthenticated} = useSelector(state => state.user)
+    const alert = useAlert();
+    const {user, isAuthenticated} = useSelector(state => state.user) 
+
+    let ans; 
+    // if(user.user){
+    //     const values = user.user; 
+    // values.forEach(val => {
+    //     if(val && typeof val === "boolean"){
+    //         console.log(val);
+    //     }
+    // });
+    // }
 
     const cart = useSelector((state) => state.cart);
     const { cartItems } = cart;
@@ -20,7 +31,7 @@ function Header() {
 
     const logoutHandler = () => {
         dispatch(logout())
-        // history.push("/account/login");
+        alert.success("Logged out Succesfully");
     }
 
     return (
@@ -31,32 +42,36 @@ function Header() {
             <nav>
                 <ul>
                     <li>
-                        <Link to="/">
-                            <FaSearch className="search_logo"/>
+                        <Link to="/search">
+                            Search
                         </Link>
                     </li>
-                    {isAuthenticated ? (
+                    <li>
+                        <Link to="/products">
+                            Products
+                        </Link>
+                    </li>
+                    {isAuthenticated ? ( 
                         <li>
-                            <button className="log_button" onClick={logoutHandler} >Logout</button>
+                            <button className="log_button" onClick={logoutHandler}>Logout</button>
                         </li>
                     ):(
                         <li>
-                            <Link to="/account/login">Sign In</Link>
+                            <Link to="/account/login">
+                                Log In
+                            </Link> 
                         </li>
                     )}
                     <li>
                         <Link to="/cart" className="cart_link">
-                            <FiShoppingCart/><span>Cart</span>
+                            Cart
                         </Link>
                     </li>
-                    {/* {isAuthenticated(
+                    {/* {isAuthenticated && user.isAdmin (
                         <li>
-                            <Link to="/">Home</Link>
+                            <Link to="/admin/dashboard">Admin Board</Link>
                         </li>
-                    )} */}
-                        {/* <li>
-                          <Link to="/products/new">Add Product</Link>
-                      </li> */}
+                    )}  */}
                 </ul>
             </nav>
         </header>

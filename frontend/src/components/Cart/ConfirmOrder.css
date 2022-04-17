@@ -15,12 +15,12 @@
   }
   
   .confirmshippingArea > p {
-    font: 500 1.9vmax "Roboto";
+    font: 500 1.9vmax "Raleway";
   }
   
   .confirmshippingAreaBox,
   .confirmCartItemsContainer {
-    margin: 2vmax;
+    margin: 1.5vmax;
   }
   
   .confirmshippingAreaBox > div {
@@ -29,17 +29,17 @@
   }
   
   .confirmshippingAreaBox > div > p {
-    font: 400 1.2vmax "Roboto";
+    font: 500 1.2vmax "Raleway";
     color: black;
   }
   .confirmshippingAreaBox > div > span {
     margin: 0 1vmax;
-    font: 100 1.2vmax "Roboto";
+    font: 100 1.2vmax "Raleway";
     color: #575757;
   }
   
   .confirmCartItems > p {
-    font: 400 1.8vmax "Roboto";
+    font: 500 1.8vmax "Raleway";
   }
   
   .confirmCartItems {
@@ -54,7 +54,7 @@
   
   .confirmCartItemsContainer > div {
     display: flex;
-    font: 400 1.2vmax "Roboto";
+    font: 500 1.2vmax "Raleway";
     align-items: center;
     justify-content: space-between;
     margin: 2vmax 0;
@@ -72,7 +72,7 @@
   }
   
   .confirmCartItemsContainer > div > span {
-    font: 100 1.2vmax "Roboto";
+    font: 100 1.2vmax "Raleway";
     color: #5e5e5e;
   }
   
@@ -82,7 +82,7 @@
   
   .orderSummary > p {
     text-align: center;
-    font: 600 1.8vmax "Roboto";
+    font: 600 1.8vmax "Raleway";
     border-bottom: 1px solid rgba(0, 0, 0, 0.267);
     padding: 1vmax;
     width: 100%;
@@ -109,7 +109,7 @@
   }
   
   .orderSummary > button {
-    background-color: tomato;
+    background-color: rgb(0, 0, 0);
     color: white;
     width: 100%;
     padding: 1vmax;
@@ -117,7 +117,7 @@
     margin: auto;
     cursor: pointer;
     transition: 0.5s;
-    font: 400 1.1vmax "Roboto";
+    font: 500 1.1vmax "Ubuntu";
   }
   
   .orderSummary > button:hover {

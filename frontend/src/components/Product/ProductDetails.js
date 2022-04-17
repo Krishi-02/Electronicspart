@@ -84,7 +84,7 @@ const ProductDetails = ({match, history}) => {
            { product && product.images && <img src={product.images[0].url} alt={product.name} className="image"/>}
           </div>
           <div className="left__info">
-            <p className="left__name">{product.name}</p>
+            <p className="left__name">{product.name}</p> 
             <p>Price: ₹{product.price}</p>
             <p>Description: {product.description}</p>
           </div>
@@ -112,7 +112,7 @@ const ProductDetails = ({match, history}) => {
                 </select>
               </p>
               <p>
-                <button type="button" onClick={addToCartHandler}>
+                <button type="button" className='cart_button' onClick={addToCartHandler}>
                   Add To Cart
                 </button>
                 <br></br>
@@ -127,7 +127,7 @@ const ProductDetails = ({match, history}) => {
      </div>
      <div>
        <h3 className='reviewsHeading'>REVIEWS</h3> 
-       <Dialog
+       <Dialog 
        aria-labelledby='simple-dialog-title'
        open={open} 
        onClose={submitReviewToggle}>

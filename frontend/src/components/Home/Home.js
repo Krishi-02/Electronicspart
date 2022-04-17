@@ -4,6 +4,8 @@ import Product from './Product.js';
 import MetaData from "../MetaData";
 import {getProduct} from '../../actions/productAction';
 import { useDispatch, useSelector} from 'react-redux';
+import { BsMouse } from 'react-icons/bs';
+import Loader from '../Loader/Loader'; 
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -16,8 +18,14 @@ const Home = () => {
   
 
     <MetaData title="ECOMMERCE"/>
-  return <div className="home">
-      <div className="banner">
+  return <div>
+    <div className='banner_scroll'>
+      <h3>Welcome to EShop</h3>
+      <a href="#container">
+        <button> Scroll <BsMouse /> </button>
+      </a>
+    </div>
+      {/* <div className="banner">
           <img 
           src="https://www.jjsmanufacturing.com/hs-fs/hubfs/Blog%20Images%202021/AdobeStock_242997308-1.jpeg?width=400&name=AdobeStock_242997308-1.jpeg"
           className="photo1"
@@ -26,24 +34,19 @@ const Home = () => {
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbUvJ6pn4SNLQj4562YlhU1aD3MMujjZVYPA&usqp=CAU"
           className="photo2"
           alt=""/>
-      </div>
+      </div> */}
 
-      <div className="featured_product"></div>
+      <div className="featured_product">
       <h5 className="home_heading">Featured Products</h5>
 
-      <div className="container">
+      <div id="container">
           {products && products.map((product) => (
           <Product 
           key={product._id} 
-          // name={product.name}
-          // description={product.description}
-          // price={product.price}
-          // imageUrl={product.imageUrl}
-          // productId={product._id}
           product={product}
           />))}
       </div>
-
+      </div>
   </div>
   };
 
