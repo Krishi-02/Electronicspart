@@ -6,6 +6,7 @@ import {login, clearError} from '../../actions/userAction';
 import Loader from '../Loader/Loader';
 import Header from '../Header/Header';
 import { useAlert } from 'react-alert';
+import loginImg from '../../images/login.svg';
 
 const Login = ({location, history}) => {
 
@@ -41,8 +42,9 @@ const Login = ({location, history}) => {
   return(
       <Fragment>
       {loading ? (<Loader />) : (  
-    <div>
-        <Header />
+    <div className='login_screen'>
+        <Header /> 
+      <div>
       <section className="main_frame">
            <div className="card_login">
           <form className="form" onSubmit={submitHandler}>
@@ -57,7 +59,7 @@ const Login = ({location, history}) => {
                   <input type="password" required className="password" placeholder="Password" 
                   onChange={(e) => setPassword(e.target.value)}/>
               </div>
-              <div className="action_button">
+              <div className="action_buttons">
                   <button>Sign In</button>
               </div>
               <div className='register_line'>
@@ -73,6 +75,7 @@ const Login = ({location, history}) => {
           </form>
       </div>
       </section>
+      </div>
       </div>
       )}
     </Fragment>

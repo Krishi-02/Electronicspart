@@ -43,16 +43,20 @@ function App() {
     });
     store.dispatch(loadUser());
   },[])
-
+  let toggle = false; 
+  // function toggleFunc(){
+  //   const width = hasWindow ? window.innerWidth : null; 
+  //   console.log(width);
+  // }
+  // console.log(toggle + " "+ width);
   return (
     <Router> 
-      {isAuthenticated && <UserOptions user={user} className='toggle'/>} 
+      {isAuthenticated && <UserOptions user={user}/>} 
     <main className="app">
         <Switch>
           <Route path="/account/login" component={Login}>
           </Route>
           <Route path="/account/register">
-            <Header/>
             <Register />
           </Route>
           <Route path="/cart" component={Cart}></Route>

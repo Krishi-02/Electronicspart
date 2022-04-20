@@ -20,7 +20,7 @@ const Home = () => {
     <MetaData title="ECOMMERCE"/>
   return <div>
     <div className='banner_scroll'>
-      <h3>Welcome to EShop</h3>
+      <h3>Welcome to Electronics Shop</h3>
       <a href="#container">
         <button> Scroll <BsMouse /> </button>
       </a>

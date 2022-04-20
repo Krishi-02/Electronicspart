@@ -28,7 +28,7 @@ function Header() {
     return (
         <header className="header">
             <Link to="/">
-            <div className="logo">SHOP</div>
+            <div className="logo">ESHOP</div>
             </Link>
             <nav>
                 <ul>

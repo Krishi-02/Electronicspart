@@ -3,7 +3,9 @@
 body{
   background-color: #f7f7f7;
 }
-
+.reg_screen{
+  background-color: #c5c2c2;
+}
 h1{
   font-family: Neue Aachen,serif;
   font-style: normal;
@@ -67,12 +69,12 @@ h1{
     display: inline-block;
     font-family: Neue Aachen,serif;
     cursor: pointer;
-    background-color: #77002e;
+    background-color: #000000;
     color: white;
     padding: 15px 45px;
     font-weight: 200;
     width: 100%;
-    font-size: 1.0rem;
+    font-size: 1.2rem;
   }
   
   .action_button button:hover,

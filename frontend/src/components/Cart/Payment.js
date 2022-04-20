@@ -52,7 +52,8 @@ const Payment = ({ history }) => {
     
   return (
     <Fragment>
-      <MetaData title="Payment" />
+      <MetaData title="Payment" /> 
+      <div className='bg_screen'>
       <CheckoutSteps activeStep={2}/>
       <div className='paymentContainer'>
           <Typography>Payment Info</Typography>
@@ -66,6 +67,7 @@ const Payment = ({ history }) => {
           className="paymentFormBtn"
           />
         </form>
+      </div>
       </div>
     </Fragment>
   )

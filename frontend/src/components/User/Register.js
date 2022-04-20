@@ -3,7 +3,8 @@ import './Register.css';
 import {Link, useHistory} from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import {register, clearError} from '../../actions/userAction';
-import Loader from '../Loader/Loader';
+import Loader from '../Loader/Loader'; 
+import Header from '../Header/Header';
 
 
 
@@ -35,8 +36,11 @@ const Register = () => {
 
 
   return(
-    <Fragment>
+    <Fragment> 
     {loading ? (<Loader />) : (
+        <div className='reg_screen'> 
+        <Header /> 
+        <div>
         <section className="main_frame">
         <div className="card_register">
        <form className="form" onSubmit={submitHandler}>
@@ -61,7 +65,9 @@ const Register = () => {
            </div>
        </form>
     </div>
-    </section>
+    </section> 
+    </div>
+    </div>
     )}
 </Fragment>
   )

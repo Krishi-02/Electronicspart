@@ -1,7 +1,7 @@
 .paymentContainer {
     display: grid;
     place-items: center;
-    background-color: rgb(255, 255, 255);
+    background-color: #ffffff;
     height: 65vh;
     margin: 2vmax;
   }
@@ -10,6 +10,9 @@
     width: 22%;
     height: 100%;
   }
+  /* .bg_screen{
+    background-color: #c5c2c2;
+  } */
   
   .paymentForm > p {
     font: 400 2vmax "Roboto";
