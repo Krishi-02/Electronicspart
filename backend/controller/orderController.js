@@ -106,7 +106,7 @@ async function updateStock(id, quantity) {
 
   product.countInStock -= quantity;
 
-  await product.save({ validateBeforeSave: false });
+  await product.save({ validateBeforeSave: false }); 
 }
 
 // delete Order -- Admin
