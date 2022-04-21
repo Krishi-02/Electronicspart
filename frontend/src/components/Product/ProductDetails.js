@@ -65,7 +65,8 @@ const ProductDetails = ({match, history}) => {
 
   const addToCartHandler = () => {
     dispatch(addtoCart(product._id, qty));
-    console.log("Item added to cart");
+    console.log("Item added to cart"); 
+    alert.success("Added to Cart");
     history.push("/cart");
   };
 
