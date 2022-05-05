@@ -12,7 +12,7 @@ exports.newOrder = asyncHandler(async (req, res, next) => {
     shippingPrice,
     totalPrice
   } = req.body;
-  console.log(req.body);
+  //console.log(req.body);
     const createdOrder = await Order.create({
       shippingInfo,
       orderItems,
@@ -32,7 +32,7 @@ exports.newOrder = asyncHandler(async (req, res, next) => {
 
 // get Single Order
 exports.getSingleOrder = asyncHandler(async (req, res, next) => {
-  console.log(req.params.id);
+  //console.log(req.params.id);
   const order = await Order.findById(req.params.id);
 
   if(!order){
@@ -75,7 +75,7 @@ exports.getAllOrders = asyncHandler(async (req, res, next) => {
 // update Order Status -- Admin
 exports.updateOrder = asyncHandler(async (req, res, next) => {
   const order = await Order.findById(req.params.id);
-  console.log(order);
+  //console.log(order);
   if (!order) {
     return next(new Error("Order not found with this Id"));
   }

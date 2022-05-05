@@ -5,34 +5,38 @@ import { useDispatch, useSelector } from 'react-redux';
 import {register, clearError} from '../../actions/userAction';
 import Loader from '../Loader/Loader'; 
 import Header from '../Header/Header';
+import { useAlert } from 'react-alert';
 
 
 
 const Register = () => {
 
+    const alert = useAlert(); 
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     const dispatch = useDispatch();
-    let history = useHistory(); 
 
     const {error, loading, isAuthenticated} = useSelector(state => state.user); 
+    const history = useHistory();
 
     const submitHandler = (e) =>{
         e.preventDefault();
         dispatch(register(name,email,password))
      }
 
+    //  const redirect = location.search ? location.search.split("=")[1] : "/";
      useEffect(() => {
         if(error){
             dispatch(clearError());
+            alert.error(error);
         }
 
         if(isAuthenticated){
             history.push("/account/login");
         }
-    },[history, dispatch, history, isAuthenticated])
+    },[history, dispatch, isAuthenticated, alert, error]) 
 
 
   return(

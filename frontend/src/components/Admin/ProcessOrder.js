@@ -23,8 +23,12 @@ const ProcessOrder = ({history, match }) => {
 
   const updateSubmitHandler = (e) => {
       e.preventDefault();
-      console.log(match.params.id);
-      dispatch(updateOrder(match.params.id, status));
+      // console.log(match.params.id);
+      console.log(status);
+      const myForm = new FormData();
+
+    myForm.set("status", status);
+      dispatch(updateOrder(match.params.id, myForm));
   }; 
 
   const dispatch = useDispatch();
