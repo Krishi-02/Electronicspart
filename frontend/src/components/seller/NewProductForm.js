@@ -59,7 +59,7 @@ const NewProductForm = () => {
             console.log(reader);
         }
     };
-    const categories = ["Please Select","IOT","Home Appliances","Books", "Furniture"];
+    const categories = ["Select Product Category","IOT","Used IOT Product","New-Bought"];
 
   return(
       <div className="card">

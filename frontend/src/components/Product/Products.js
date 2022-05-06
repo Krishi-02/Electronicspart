@@ -9,10 +9,10 @@ import Slider from "@material-ui/core/Slider";
 import { useAlert } from "react-alert";
 import Typography from "@material-ui/core/Typography";
 import MetaData from '../MetaData';   
-import Header from '../Header/Header'; 
+import Header from '../Header/Header';  
 
 
-const Products = ({ match }) => {
+const Products = ({ match }) => { 
     const dispatch = useDispatch(); 
     const alert = useAlert(); 
 
@@ -23,7 +23,7 @@ const Products = ({ match }) => {
     const [ratings, setRatings] = useState(0);
     const categories = [
         "IOT", 
-        "Student-used", 
+        "Used IOT Product", 
         "New-Bought"
     ];
     const {
