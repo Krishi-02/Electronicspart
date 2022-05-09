@@ -6,10 +6,11 @@ const errorMiddleware = require('./middleware/error')
 const cloudinary = require('cloudinary');
 const fileUpload = require('express-fileupload');
 const bodyParser = require('body-parser');
-const dotenv = require('dotenv');
-const DatauriParser = require('datauri/parser');
-const parser = new DatauriParser();
-dotenv.config();
+const path = require('path');
+
+if(process.env.NODE_ENV !== "PRODUCION"){
+  require('dotenv').config();
+}
 
 connectDB();
 
@@ -36,7 +37,11 @@ const order = require('./routes/orderRoute');
 app.use("/",product);
 app.use("/", user)
 app.use("/",order);
+app.use(express.static(path.join(__dirname, "./frontend/build")));
 
+app.get("*", (req,res) => {
+  res.sendFile(path.resolve(__dirname, "./frontend/build/index.html"));
+})
 
 //middleware 
 app.use(errorMiddleware);
