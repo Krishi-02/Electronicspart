@@ -30,6 +30,7 @@ import Footer from './components/Footer/Footer';
 import Search from "./components/Product/Search";
 import ProcessOrder from "./components/Admin/ProcessOrder";
 import UserOptions from "./components/Header/UserOptions";
+import NotFound from './components/Not Found/NotFound';
 
 function App() {
 
@@ -43,12 +44,9 @@ function App() {
     });
     store.dispatch(loadUser());
   },[])
+
+  window.addEventListener("contextmenu", (e) => e.preventDefault());
   let toggle = false; 
-  // function toggleFunc(){
-  //   const width = hasWindow ? window.innerWidth : null; 
-  //   console.log(width);
-  // }
-  // console.log(toggle + " "+ width);
   return (
     <Router> 
       {isAuthenticated && <UserOptions user={user}/>} 
@@ -84,7 +82,8 @@ function App() {
             <Header />
             <Home />
             <Footer />
-          </Route>
+          </Route> 
+          <Route component={NotFound}/>
         </Switch>
     </main>
     </Router>
