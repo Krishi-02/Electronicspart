@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getAdminProduct } from "../../actions/productAction";
 import { getAllOrders } from "../../actions/orderAction.js";
 import { getAllUsers } from "../../actions/userAction.js";
-import MetaData from "../MetaData";
+import MetaData from "../MetaData.js";
 
 const Dashboard = () => {
   const dispatch = useDispatch();

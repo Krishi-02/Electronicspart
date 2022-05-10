@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect } from "react";
 import "./OrderDetails.css";
 import { useSelector, useDispatch } from "react-redux";
-import MetaData from "../MetaData";
+import MetaData from "../MetaData.js";
 import { Link } from "react-router-dom";
 import { Typography } from "@material-ui/core";
 import { getOrderDetails, clearErrors } from "../../actions/orderAction";

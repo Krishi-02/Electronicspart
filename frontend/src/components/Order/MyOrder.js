@@ -6,7 +6,7 @@ import { clearErrors, myOrders } from "../../actions/orderAction";
 import Loader from '../Loader/Loader';
 import { Link } from "react-router-dom";
 import Typography from "@material-ui/core/Typography";
-import MetaData from "../MetaData";
+import MetaData from "../MetaData.js";
 import LaunchIcon from "@material-ui/icons/Launch";
 
 const MyOrders = () => {

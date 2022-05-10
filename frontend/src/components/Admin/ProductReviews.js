@@ -9,7 +9,7 @@ import {
 } from "../../actions/productAction";
 import { useAlert } from "react-alert";
 import { Button } from "@material-ui/core";
-import MetaData from "../MetaData";
+import MetaData from "../MetaData.js";
 import DeleteIcon from "@material-ui/icons/Delete";
 import Star from "@material-ui/icons/Star";
 

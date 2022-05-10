@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import './Home.css';
 import Product from './Product.js';
-import MetaData from "../MetaData";
+import MetaData from "../MetaData.js";
 import {getProduct} from '../../actions/productAction';
 import { useDispatch, useSelector} from 'react-redux';
 import { BsMouse } from 'react-icons/bs';
