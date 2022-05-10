@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useRef } from 'react'
 import './Payment.css';
 import CheckoutSteps from './CheckoutSteps';
 import { useSelector, useDispatch} from 'react-redux';
-import MetaData from '../MetaData';
+import MetaData from '../MetaData.js';
 import {createOrder, clearErrors} from '../../actions/orderAction';
 import { Typography } from '@material-ui/core';
 

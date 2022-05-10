@@ -8,7 +8,7 @@ import Pagination from 'react-js-pagination';
 import Slider from "@material-ui/core/Slider";
 import { useAlert } from "react-alert";
 import Typography from "@material-ui/core/Typography";
-import MetaData from '../MetaData';   
+import MetaData from '../MetaData.js';   
 import Header from '../Header/Header';  
 
 

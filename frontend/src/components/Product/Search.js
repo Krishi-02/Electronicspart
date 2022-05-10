@@ -1,5 +1,5 @@
 import React, {Fragment, useState }from 'react'; 
-import MetaData from '../MetaData';
+import MetaData from '../MetaData.js';
 import './Search.css'; 
 
 const Search = ({ history }) => {

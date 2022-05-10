@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import './ConfirmOrder.css';
 import CheckoutSteps from "../Cart/CheckoutSteps";
 import { useSelector } from "react-redux";
-import MetaData from '../MetaData';
+import MetaData from '../MetaData.js';
 import { Link } from "react-router-dom";
 import { Typography } from "@material-ui/core";
 

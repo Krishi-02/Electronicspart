@@ -3,7 +3,7 @@ import './Profile.css';
 import { useSelector } from 'react-redux';
 import Header from '../Header/Header';
 import Loader from '../Loader/Loader';
-import MetaData from '../MetaData';
+import MetaData from '../MetaData.js';
 import {Link} from 'react-router-dom';
 import profile from '../../images/profile.png'; 
 

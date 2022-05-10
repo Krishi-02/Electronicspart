@@ -5,7 +5,7 @@ import { useSelector, useDispatch} from 'react-redux';
 import {getAdminProduct, clearError, deleteProduct} from '../../actions/productAction';
 import { Link } from 'react-router-dom';
 import { Button } from '@material-ui/core';
-import MetaData from '../MetaData';
+import MetaData from '../MetaData.js';
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import SideBar from "./Sidebar";
