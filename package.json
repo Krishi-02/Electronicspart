@@ -8,11 +8,10 @@
   },
   "main": "server.js",
   "scripts": { 
-    "build-client" : "cd frontend && npm run build", 
-    "server" : "nodemon backend/server",
-    "client" : "npm start --prefix frontend", 
-    "start": "concurrently --kill-others-on-fail \"npm run server\" \" npm run client\"",
-    "heroku-postbuild": "npm install --only=dev --no-shrinkwrap && npm run install-client && npm run build-client"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node backend/server.js",
+    "dev": "nodemon backend/server.js",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false && npm install --prefix frontend && npm run build --prefix frontend"
   },
   "keywords": [],
   "author": "",
