@@ -1,6 +1,6 @@
-import {BrowserRouter as Router, Route, Switch, Link} from "react-router-dom";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import './App.css';
-import React, { useState } from "react";
+import React from "react";
 import WebFont from 'webfontloader';
 import Header from './components/Header/Header';
 import Home from './components/Home/Home';
@@ -17,7 +17,6 @@ import Profile from './components/User/Profile';
 import ConfirmOrder from "./components/Cart/ConfirmOrder";
 import Dashboard from "./components/Admin/Dashboard.js"
 import { useSelector } from "react-redux";
-import axios from "axios";
 import Payment from './components/Cart/Payment';
 import OrderSuccess from './components/Cart/OrderSuccess';
 import MyOrder from './components/Order/MyOrder';
@@ -46,7 +45,6 @@ function App() {
   },[])
 
   window.addEventListener("contextmenu", (e) => e.preventDefault());
-  let toggle = false; 
   return (
     <Router> 
       {isAuthenticated && <UserOptions user={user}/>} 
