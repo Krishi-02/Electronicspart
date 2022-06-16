@@ -22,7 +22,7 @@ const UserList = ({ history }) => {
         message
     } = useSelector((state) => state.profile);
     
-    const deleteUserHandler = (id) =>{
+    const deleteUserHandler = (id) => {
         dispatch(deleteUser(id));
     }
 

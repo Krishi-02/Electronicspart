@@ -1,7 +1,6 @@
-import React , {Fragment, useEffect} from 'react'
+import React , {Fragment} from 'react'
 import './Profile.css';
 import { useSelector } from 'react-redux';
-import Header from '../Header/Header';
 import Loader from '../Loader/Loader';
 import MetaData from '../MetaData.js';
 import {Link} from 'react-router-dom';
@@ -9,7 +8,7 @@ import profile from '../../images/profile.png';
 
 const Profile = ({ history }) => {
 
-    const {user, isAuthenticated, loading} = useSelector((state)=> state.user);
+    const {user, loading} = useSelector((state)=> state.user);
 
   return (
     <Fragment>
