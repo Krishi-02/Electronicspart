@@ -43,7 +43,6 @@ function App() {
     });
     store.dispatch(loadUser());
   },[])
-
   window.addEventListener("contextmenu", (e) => e.preventDefault());
   return (
     <Router> 
