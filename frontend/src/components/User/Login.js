@@ -1,19 +1,18 @@
 import React,{Fragment, useEffect, useState} from 'react';
 import './Login.css';
-import {Link, useHistory} from "react-router-dom";
+import {Link} from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import {login, clearError} from '../../actions/userAction';
 import Loader from '../Loader/Loader';
 import Header from '../Header/Header';
 import { useAlert } from 'react-alert';
-import loginImg from '../../images/login.svg';
 
 const Login = ({location, history}) => {
 
     const dispatch = useDispatch(); 
     // let history = useHistory();
     const alert = useAlert(); 
-    const {error, loading, isAuthenticated } = useSelector(state => state.user);
+    const {error, loading, isAuthenticated, success} = useSelector(state => state.user);
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -23,7 +22,6 @@ const Login = ({location, history}) => {
     const submitHandler = (e) => {
         e.preventDefault();
         dispatch(login(email,password)); 
-        alert.success("Succesfully Logged In");
     }
 
     const redirect = location.search ? location.search.split("=")[1] : "/account";
@@ -36,7 +34,10 @@ const Login = ({location, history}) => {
         if(isAuthenticated){
             history.push(redirect);
         }
-    }, [isAuthenticated, error, dispatch, history, redirect])
+        if(success){
+          alert.success("Succesfully Logged In");
+        }
+    }, [isAuthenticated, error, dispatch, history, redirect, success])
 
 
   return(
